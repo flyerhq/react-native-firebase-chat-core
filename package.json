@@ -20,6 +20,9 @@
     "@babel/core": "^7.10.2",
     "@babel/runtime": "^7.10.2",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@react-native-firebase/app": "^7.2.0",
+    "@react-native-firebase/auth": "^8.0.4",
+    "@react-native-firebase/firestore": "^7.1.5",
     "@types/jest": "^25.2.3",
     "@types/react-native": "^0.62.12",
     "@types/react-test-renderer": "^16.9.2",
@@ -34,6 +37,9 @@
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
+    "@react-native-firebase/app": "*",
+    "@react-native-firebase/auth": "*",
+    "@react-native-firebase/firestore": "*",
     "react": "*",
     "react-native": "*"
   },

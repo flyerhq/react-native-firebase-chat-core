@@ -1,4 +1,4 @@
-package com.example;
+package chat.flyer;
 
 import com.facebook.react.ReactActivity;
 

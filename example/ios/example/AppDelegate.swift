@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 #if DEBUG
 import FlipperKit
 #endif
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     #if DEBUG
     initializeFlipper(with: application)
     #endif
+
+    FirebaseApp.configure()
 
     let bridge = RCTBridge(delegate: self, launchOptions: launchOptions)
     let rootView = RCTRootView(bridge: bridge!, moduleName: "example", initialProperties: nil)
