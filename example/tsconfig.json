@@ -9,7 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "react-native-firebase-chat-core": ["../src"]
+      "@flyerhq/react-native-firebase-chat-core": ["../src"]
     },
     "skipLibCheck": true,
     "strict": true,

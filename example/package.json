@@ -11,17 +11,27 @@
     "test": "jest"
   },
   "dependencies": {
+    "@flyerhq/react-native-chat-ui": "^0.1.8",
+    "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^7.2.0",
     "@react-native-firebase/auth": "^8.0.4",
     "@react-native-firebase/firestore": "^7.1.5",
+    "@react-navigation/native": "^5.5.1",
+    "@react-navigation/stack": "^5.5.1",
+    "faker": "^4.1.0",
     "react": "^16.13.1",
-    "react-native": "^0.62.2"
+    "react-native": "^0.62.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-safe-area-context": "^3.0.2",
+    "react-native-screens": "^2.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/runtime": "^7.10.2",
-    "@react-native-community/eslint-config": "^1.1.0",
-    "@types/jest": "^25.2.3",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/faker": "^4.1.12",
+    "@types/jest": "^26.0.0",
     "@types/react-native": "^0.62.13",
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^26.0.1",
