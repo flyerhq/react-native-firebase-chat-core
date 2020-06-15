@@ -12,7 +12,7 @@ export const useMessages = (roomId: string) => {
   }, [])
 
   React.useEffect(() => {
-    const subscriber = firestore()
+    return firestore()
       .collection(`rooms/${roomId}/messages`)
       .orderBy('timestamp', 'desc')
       .onSnapshot((querySnapshot) => {
@@ -32,8 +32,6 @@ export const useMessages = (roomId: string) => {
 
         setMessages(newMessages)
       })
-
-    return subscriber
   }, [roomId])
 
   const sendMessage = async (message: Message) => {

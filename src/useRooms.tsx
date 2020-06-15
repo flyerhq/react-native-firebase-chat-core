@@ -31,38 +31,57 @@ export const useRooms = () => {
 
     return firestore()
       .collection('rooms')
-      .onSnapshot((querySnapshot) => {
-        const newRooms: Room[] = []
+      .where('userIds', 'array-contains', user.uid)
+      .onSnapshot(async (querySnapshot) => {
+        const promises = querySnapshot.docs.map(async (doc) => {
+          const userIds = doc.get('userIds') as string[]
 
-        querySnapshot.forEach((documentSnaphot) => {
-          const users = (documentSnaphot.get('users') as unknown) as User[]
+          if (!userIds) return Promise.reject('Room must have userIds field')
 
-          if (!users) return
+          let imageUrl = (doc.get('imageUrl') as string | null) ?? undefined
+          let name = (doc.get('name') as string | null) ?? undefined
 
-          const id = documentSnaphot.id
-          let imageUrl =
-            (documentSnaphot.get('imageUrl') as string | null) ?? undefined
-          let name = (documentSnaphot.get('name') as string | null) ?? undefined
+          const userPromises = userIds.map(async (userId) => {
+            const userData = await firestore()
+              .collection('users')
+              .doc(userId)
+              .get()
+
+            const avatarUrl =
+              (userData.get('avatarUrl') as string | null) ?? undefined
+            const firstName = userData.get('firstName') as string
+            const lastName = userData.get('lastName') as string
+
+            const fetchedUser: User = {
+              avatarUrl,
+              firstName,
+              id: userData.id,
+              lastName,
+            }
+
+            return fetchedUser
+          })
+
+          const users = await Promise.all(userPromises)
 
           if (users.length === 2) {
             const otherUser = users.find((u) => u.id !== user.uid)
 
-            if (!otherUser) return
-
-            imageUrl = otherUser.avatarUrl
-            name = `${otherUser.firstName} ${otherUser.lastName}`
+            imageUrl = otherUser?.avatarUrl
+            name = `${otherUser?.firstName ?? ''} ${otherUser?.lastName ?? ''}`
           }
 
           const newRoom: Room = {
-            id,
+            id: doc.id,
             imageUrl,
             name,
             users,
           }
 
-          newRooms.push(newRoom)
+          return newRoom
         })
 
+        const newRooms = await Promise.all(promises)
         setRooms(newRooms)
       })
   }, [user])
@@ -76,24 +95,13 @@ export const useRooms = () => {
       return (verifyData as CreateChatData).otherUser !== undefined
     }
 
-    const userData = await firestore().collection('users').doc(user.uid).get()
-    const avatarUrl = (userData.get('avatarUrl') as string | null) ?? undefined
-    const firstName = userData.get('firstName') as string
-    const id = user.uid
-    const lastName = userData.get('lastName') as string
-
-    const currentUser: User = {
-      avatarUrl,
-      firstName,
-      id,
-      lastName,
-    }
-
     const room = await firestore()
       .collection('rooms')
       .add({
         imageUrl: isChat(data) ? undefined : data.imageUrl,
-        users: [currentUser].concat(isChat(data) ? data.otherUser : data.users),
+        userIds: [user.uid].concat(
+          isChat(data) ? data.otherUser.id : data.users.map((u) => u.id)
+        ),
         name: isChat(data) ? undefined : data.name,
       })
 

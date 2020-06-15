@@ -28,13 +28,12 @@ export const useUsers = () => {
           const avatarUrl =
             (documentSnaphot.get('avatarUrl') as string | null) ?? undefined
           const firstName = documentSnaphot.get('firstName') as string
-          const id = documentSnaphot.id
           const lastName = documentSnaphot.get('lastName') as string
 
           const newUser: User = {
             avatarUrl,
             firstName,
-            id,
+            id: documentSnaphot.id,
             lastName,
           }
 
