@@ -552,7 +552,7 @@ PODS:
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
   - React-jsinspector (0.62.2)
-  - react-native-safe-area-context (3.0.2):
+  - react-native-safe-area-context (3.0.5):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -616,14 +616,14 @@ PODS:
   - RenderCore (0.30)
   - RNCMaskedView (0.1.10):
     - React
-  - RNFBApp (7.2.0):
+  - RNFBApp (7.2.1):
     - Firebase/CoreOnly (~> 6.25.0)
     - React
-  - RNFBAuth (8.0.4):
+  - RNFBAuth (8.0.5):
     - Firebase/Auth (~> 6.25.0)
     - React
     - RNFBApp
-  - RNFBFirestore (7.1.5):
+  - RNFBFirestore (7.1.7):
     - Firebase/Firestore (~> 6.25.0)
     - React
     - RNFBApp
@@ -843,7 +843,7 @@ SPEC CHECKSUMS:
   React-jsi: b6dc94a6a12ff98e8877287a0b7620d365201161
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
-  react-native-safe-area-context: b11a34881faac509cad5578726c98161ad4d275c
+  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -856,9 +856,9 @@ SPEC CHECKSUMS:
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
   RenderCore: d779c47622b313ce2d51bb36d084517af38b0dc1
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNFBApp: 09caf098f066a44cf6f7ce9ea7dbc8b980ca10ec
-  RNFBAuth: 6c47b51d4aaac59ae96324f8bfde0c889a08a9d7
-  RNFBFirestore: 2429fbb550289d491665f70312dcd80831f3f77a
+  RNFBApp: def13f6392e7c9839c938879f065ec0088c4496a
+  RNFBAuth: da10602d9f8644a1669d824c862e7321b1f0fc9e
+  RNFBFirestore: b6209c3c80f6dc934e72443c007299f594041904
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244

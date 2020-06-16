@@ -1214,17 +1214,17 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@flyerhq/react-native-chat-ui@^0.1.8":
-  version "0.1.8"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.1.8/b15a3fd927ebcb52f8d3c3b48aa2c71f7e02f90a9fc390dc5db382173070249c#4a1a406b7068719ae674eddee6f5d51ce7de8d5d"
-  integrity sha512-vhCGKVxGuQNff5o+/cqSObsfuMJMMDHzMFyFnz//+dSaJVT4SoG3hygvi1s7CqpxNpdiJuqYPo74VzfDesbLQg==
+"@flyerhq/react-native-chat-ui@^0.1.9":
+  version "0.1.9"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.1.9/34c5f76f3aa1f3bd05d6199ab937f68bfd5396a66fe864a87da4cef791060a93#c9b5a06f7cf4695d17ddef20bf02c35665844b18"
+  integrity sha512-Th+1o1YP9yQq1xoBU7B6SBEhuawhld9oaHUW+7YBAesh1ylPyev2t6hzMfc9DQueWV0+YpfHK5pnJ3x7jXDBVA==
   dependencies:
-    "@flyerhq/react-native-keyboard-accessory-view" "^1.1.0"
+    "@flyerhq/react-native-keyboard-accessory-view" "^1.2.0"
 
-"@flyerhq/react-native-keyboard-accessory-view@^1.1.0":
-  version "1.1.1"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/1.1.1/b1e2c4a59a11f4d0074d66ca2b3cc98eb6500fd16ca9d403e76b002146dab5a3#84bbdbcb0394e35504e8b8ee376215028024ea6e"
-  integrity sha512-fd/nOqIxLNmaGLPDM8bMS62B6uoR3evuv5fUNHf6ADr8co6NvugCzlon9T2R6LvAbxjfy1KRQzpPvWpGx5r6AQ==
+"@flyerhq/react-native-keyboard-accessory-view@^1.2.0":
+  version "1.2.0"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/1.2.0/a137eedb729c6c3523685357ba9a3da8cc6fbaad128417ca8624075334a10272#79dfff8053890f8187ddec99c59f813f2f0c544b"
+  integrity sha512-EnbpXk59Pg9wMa+xM4mZayU/6Pr9bJQrDZ8VjWj1XulC9+XLtp0sJimt130sYmOnrrieT/fOpgUn4YEGJ+xZgw==
 
 "@hapi/address@2.x.x":
   version "2.1.2"
@@ -1622,24 +1622,24 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.7.2.tgz#d2e1530af5702e00578914b41468898c10d3289c"
   integrity sha512-pIwc6e0ZINw6PJqNVsAxzOVJUDg6au2TdulY+ZOYQ11SPDs5I2n9likoGrElPmJjajT4s9h87uz/6PWP2k9PxQ==
 
-"@react-native-firebase/app@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.2.0.tgz#09b6f3c14e801fe45134e973b2eabc3f014833b7"
-  integrity sha512-hGQAMRM4ENQB/nbDJ2sZJFHy5FL5aKtRWqi4QcywM/0b3y7nDUwW82wuOGYcI+OH2Vk9NyDYnjH73LHeCqwneA==
+"@react-native-firebase/app@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.2.1.tgz#c17fa79694d4617a8af7570bec1566cbe630ef02"
+  integrity sha512-xwNOqA9AwDrHwAt0kt0zCs1BHBE9mvC1W8QfcBi/10Hp2rLlGzRMcds7W/mpONJEZ3dG6WHSfkRGNgt+FbVccQ==
   dependencies:
     "@react-native-firebase/app-types" "6.7.2"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-8.0.4.tgz#bad66c363d2ff622750542d02c3383607fec44b8"
-  integrity sha512-xG8SsttcSp8xcpvClfe516P/xLzeOnUpGQvXvcXcDiaZuiwWK/a/3G5BvpAEjV1uanXt9vlvbytVGwEScbskrQ==
+"@react-native-firebase/auth@^8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-8.0.5.tgz#2086547b95ca1d2906adcd7da9f2d5fc9e7e69fa"
+  integrity sha512-Hs8WcN+1UTWWS+q7nBcmcg1A2pU3tOxauJX2yeA9hxvNQClhc6nOpFVr+gg2Dq+IGs5bKf2f3ICLmPL0DSN3FA==
 
-"@react-native-firebase/firestore@^7.1.5":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-7.1.5.tgz#1ffd8597ef3453e96f1dcd7ec952ab7377e65c0e"
-  integrity sha512-C6E2RzQ0dq0/gynTufTjPB/HyYSlc7QM++Ofw5kEb/s6h/+P9hELG54jBSXfWnq0X4N7wvZ/9dTzAxtmta+XUg==
+"@react-native-firebase/firestore@^7.1.7":
+  version "7.1.7"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-7.1.7.tgz#b671f8011f1810f401778f2415640de28e6fbe18"
+  integrity sha512-gHoL9uW720pHxtq37YF/rvVEfDqCWRubwmGMbgwH6nbw9gCfbQNtwN3phkfMlnTyJCGFv0PUvdILAnqWPN2R3A==
 
 "@react-navigation/core@^5.10.0":
   version "5.10.0"
@@ -6507,10 +6507,10 @@ react-native-reanimated@^1.9.0:
   dependencies:
     fbjs "^1.0.0"
 
-react-native-safe-area-context@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.0.2.tgz#95dd7e56bc89bcc4f3f7bb5fada30c98420328b2"
-  integrity sha512-x3yVMsxwe9GyvIkv0Q5jy2CWYN7VO0/CJTFGG5kSiMo8FFTQJbWtuWGANFqxDzEH5NEV7/SfK+qTgAh931KyUw==
+react-native-safe-area-context@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.0.5.tgz#3dd9bf2fea3b51f894b9849f11108ac303bbefe5"
+  integrity sha512-cLZtHvzm/tdCTCOCgNRUsnl9ma8MozE9vtxHQVftuY6hRt+esCBdXA5jXcuCaCj+yUe4Akw+c5BPFNUF5vOTjQ==
 
 react-native-screens@^2.8.0:
   version "2.8.0"
