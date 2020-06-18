@@ -1,15 +1,9 @@
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 import { Message } from './types'
 
 export const useMessages = (roomId: string) => {
   const [messages, setMessages] = React.useState<Message[]>([])
-  const [user, setUser] = React.useState<FirebaseAuthTypes.User | null>(null)
-
-  React.useEffect(() => {
-    return auth().onAuthStateChanged(setUser)
-  }, [])
 
   React.useEffect(() => {
     return firestore()
@@ -42,5 +36,5 @@ export const useMessages = (roomId: string) => {
     })
   }
 
-  return { messages, sendMessage, user }
+  return { messages, sendMessage }
 }

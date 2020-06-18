@@ -1,15 +1,11 @@
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 import { User } from './types'
+import { useFirebaseUser } from './useFirebaseUser'
 
 export const useUsers = () => {
   const [users, setUsers] = React.useState<User[]>([])
-  const [user, setUser] = React.useState<FirebaseAuthTypes.User | null>(null)
-
-  React.useEffect(() => {
-    return auth().onAuthStateChanged(setUser)
-  }, [])
+  const { user } = useFirebaseUser()
 
   React.useEffect(() => {
     if (!user) {
@@ -52,5 +48,5 @@ export const useUsers = () => {
     })
   }
 
-  return { createUserInFirestore, user, users }
+  return { createUserInFirestore, users }
 }

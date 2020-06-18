@@ -1,5 +1,8 @@
 import { Chat } from '@flyerhq/react-native-chat-ui'
-import { useMessages } from '@flyerhq/react-native-firebase-chat-core'
+import {
+  useFirebaseUser,
+  useMessages,
+} from '@flyerhq/react-native-firebase-chat-core'
 import { RouteProp } from '@react-navigation/native'
 import React from 'react'
 import { MainStackParamList } from 'src/types'
@@ -9,7 +12,8 @@ interface Props {
 }
 
 const ChatScreen = ({ route }: Props) => {
-  const { messages, sendMessage, user } = useMessages(route.params.roomId)
+  const { user } = useFirebaseUser()
+  const { messages, sendMessage } = useMessages(route.params.roomId)
 
   return (
     <Chat

@@ -1,7 +1,7 @@
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 import { Room, User } from './types'
+import { useFirebaseUser } from './useFirebaseUser'
 
 interface CreateChatData {
   otherUser: User
@@ -17,11 +17,7 @@ type CreateRoomData = CreateChatData | CreateGroupData
 
 export const useRooms = () => {
   const [rooms, setRooms] = React.useState<Room[]>([])
-  const [user, setUser] = React.useState<FirebaseAuthTypes.User | null>(null)
-
-  React.useEffect(() => {
-    return auth().onAuthStateChanged(setUser)
-  }, [])
+  const { user } = useFirebaseUser()
 
   React.useEffect(() => {
     if (!user) {
@@ -108,5 +104,5 @@ export const useRooms = () => {
     return room
   }
 
-  return { createRoom, rooms, user }
+  return { createRoom, rooms }
 }

@@ -1,4 +1,8 @@
-import { Room, useRooms } from '@flyerhq/react-native-firebase-chat-core'
+import {
+  Room,
+  useFirebaseUser,
+  useRooms,
+} from '@flyerhq/react-native-firebase-chat-core'
 import auth from '@react-native-firebase/auth'
 import { CompositeNavigationProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -23,7 +27,8 @@ interface Props {
 }
 
 const RoomsScreen = ({ navigation }: Props) => {
-  const { rooms, user } = useRooms()
+  const { user } = useFirebaseUser()
+  const { rooms } = useRooms()
 
   useLayoutEffect(() => {
     navigation.setOptions({
