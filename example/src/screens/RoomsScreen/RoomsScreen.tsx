@@ -27,23 +27,23 @@ interface Props {
 }
 
 const RoomsScreen = ({ navigation }: Props) => {
-  const { user } = useFirebaseUser()
+  const { firebaseUser } = useFirebaseUser()
   const { rooms } = useRooms()
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Button disabled={!user} onPress={logout} title='Logout' />
+        <Button disabled={!firebaseUser} onPress={logout} title='Logout' />
       ),
       headerRight: () => (
         <Button
-          disabled={!user}
+          disabled={!firebaseUser}
           onPress={() => navigation.navigate('UsersStack')}
           title='Add'
         />
       ),
     })
-  }, [navigation, user])
+  }, [firebaseUser, navigation])
 
   const logout = async () => {
     try {
@@ -72,7 +72,7 @@ const RoomsScreen = ({ navigation }: Props) => {
       renderItem={renderItem}
       ListEmptyComponent={() => (
         <View style={styles.listEmptyComponent}>
-          {user ? (
+          {firebaseUser ? (
             <Text>No rooms</Text>
           ) : (
             <>

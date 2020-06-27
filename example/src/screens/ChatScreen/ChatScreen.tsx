@@ -12,14 +12,14 @@ interface Props {
 }
 
 const ChatScreen = ({ route }: Props) => {
-  const { user } = useFirebaseUser()
+  const { firebaseUser } = useFirebaseUser()
   const { messages, sendMessage } = useMessages(route.params.roomId)
 
   return (
     <Chat
       messages={messages}
       onSendPress={sendMessage}
-      user={{ id: user?.uid ?? '', name: '' }}
+      user={{ id: firebaseUser?.uid ?? '', name: '' }}
     />
   )
 }

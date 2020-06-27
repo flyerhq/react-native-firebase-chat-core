@@ -2,13 +2,15 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import * as React from 'react'
 
 export const useFirebaseUser = () => {
-  const [user, setUser] = React.useState<FirebaseAuthTypes.User | undefined>()
+  const [firebaseUser, setFirebaseUser] = React.useState<
+    FirebaseAuthTypes.User | undefined
+  >()
 
   React.useEffect(() => {
-    return auth().onAuthStateChanged((firebaseUser) => {
-      setUser(firebaseUser ?? undefined)
+    return auth().onAuthStateChanged((user) => {
+      setFirebaseUser(user ?? undefined)
     })
   })
 
-  return { user }
+  return { firebaseUser }
 }

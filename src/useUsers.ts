@@ -2,51 +2,32 @@ import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 import { User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
+import { processUserDocument } from './utils'
 
 export const useUsers = () => {
   const [users, setUsers] = React.useState<User[]>([])
-  const { user } = useFirebaseUser()
+  const { firebaseUser } = useFirebaseUser()
 
   React.useEffect(() => {
-    if (!user) {
+    if (!firebaseUser) {
       setUsers([])
       return
     }
 
     return firestore()
       .collection('users')
-      .onSnapshot((querySnapshot) => {
+      .onSnapshot((query) => {
         const newUsers: User[] = []
 
-        querySnapshot.forEach((documentSnaphot) => {
-          if (user.uid === documentSnaphot.id) return
+        query.forEach((doc) => {
+          if (firebaseUser.uid === doc.id) return
 
-          const avatarUrl =
-            (documentSnaphot.get('avatarUrl') as string | null) ?? undefined
-          const firstName = documentSnaphot.get('firstName') as string
-          const lastName = documentSnaphot.get('lastName') as string
-
-          const newUser: User = {
-            avatarUrl,
-            firstName,
-            id: documentSnaphot.id,
-            lastName,
-          }
-
-          newUsers.push(newUser)
+          newUsers.push(processUserDocument(doc))
         })
 
         setUsers(newUsers)
       })
-  }, [user])
+  }, [firebaseUser])
 
-  const createUserInFirestore = async (userData: User) => {
-    await firestore().collection('users').doc(userData.id).set({
-      avatarUrl: userData.avatarUrl,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-    })
-  }
-
-  return { createUserInFirestore, users }
+  return { users }
 }

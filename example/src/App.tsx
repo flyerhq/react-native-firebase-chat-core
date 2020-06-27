@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
+import { StatusBar } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 import {
@@ -50,6 +51,7 @@ const UsersStackNavigator = () => {
 const App = () => {
   return (
     <SafeAreaProvider>
+      <StatusBar barStyle='dark-content' />
       <NavigationContainer>
         <RootStack.Navigator
           initialRouteName='Main'

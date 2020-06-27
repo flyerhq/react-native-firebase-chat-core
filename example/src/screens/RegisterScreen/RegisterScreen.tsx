@@ -1,4 +1,4 @@
-import { useUsers } from '@flyerhq/react-native-firebase-chat-core'
+import { createUserInFirestore } from '@flyerhq/react-native-firebase-chat-core'
 import auth from '@react-native-firebase/auth'
 import { CompositeNavigationProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -19,7 +19,6 @@ const RegisterScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState(faker.internet.email())
   const [password, setPassword] = useState('Qawsed1-')
   const [registering, setRegistering] = useState(false)
-  const { createUserInFirestore } = useUsers()
 
   const register = async () => {
     try {

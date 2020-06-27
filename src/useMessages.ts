@@ -9,18 +9,18 @@ export const useMessages = (roomId: string) => {
     return firestore()
       .collection(`rooms/${roomId}/messages`)
       .orderBy('timestamp', 'desc')
-      .onSnapshot((querySnapshot) => {
+      .onSnapshot((query) => {
         const newMessages: Message[] = []
 
-        querySnapshot.forEach((documentSnaphot) => {
-          const { timestamp, ...rest } = documentSnaphot.data()
+        query.forEach((doc) => {
+          const { timestamp, ...rest } = doc.data()
 
           newMessages.push({
             ...rest,
             timestamp: timestamp
               ? Math.floor(timestamp.toMillis() / 1000)
               : undefined,
-            id: documentSnaphot.id,
+            id: doc.id,
           } as Message)
         })
 
