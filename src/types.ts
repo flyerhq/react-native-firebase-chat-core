@@ -8,6 +8,7 @@ export interface Message {
 export interface Room {
   id: string
   imageUrl?: string
+  isGroup: boolean
   name?: string
   users: User[]
 }
