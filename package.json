@@ -11,10 +11,11 @@
     "lib"
   ],
   "scripts": {
-    "compile": "tsc -p .",
+    "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint .",
     "prepare": "yarn compile",
-    "test": "jest"
+    "test": "jest",
+    "type-coverage": "type-coverage --is 100 --ignore-catch --cache"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
@@ -34,6 +35,7 @@
     "react": "^16.13.1",
     "react-native": "^0.62.2",
     "react-test-renderer": "^16.13.1",
+    "type-coverage": "^2.8.2",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
@@ -53,5 +55,8 @@
       "json",
       "node"
     ]
+  },
+  "typeCoverage": {
+    "is": 100
   }
 }
