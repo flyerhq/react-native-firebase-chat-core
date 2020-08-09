@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    #if DEBUG
     initializeFlipper(with: application)
-    #endif
 
     FirebaseApp.configure()
 
@@ -45,16 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     #endif
   }
 
-  #if DEBUG
   private func initializeFlipper(with application: UIApplication) {
+    #if DEBUG
     let client = FlipperClient.shared()
     let layoutDescriptionMapper = SKDescriptorMapper(defaults: ())
-    FlipperKitLayoutComponentKitSupport.setUpWith(layoutDescriptionMapper)
     client?.add(FlipperKitLayoutPlugin(rootNode: application, with: layoutDescriptionMapper))
     client?.add(FKUserDefaultsPlugin(suiteName: nil))
     client?.add(FlipperKitReactPlugin())
     client?.add(FlipperKitNetworkPlugin(networkAdapter: SKIOSNetworkAdapter()))
     client?.start()
+    #endif
   }
-  #endif
 }
