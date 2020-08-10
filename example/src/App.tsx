@@ -24,7 +24,7 @@ const UsersStack = createNativeStackNavigator<UsersStackParamList>()
 
 const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator screenOptions={{ headerTopInsetEnabled: false }}>
       <AuthStack.Screen name='Login' component={LoginScreen} />
       <AuthStack.Screen name='Register' component={RegisterScreen} />
     </AuthStack.Navigator>
@@ -33,7 +33,10 @@ const AuthStackNavigator = () => {
 
 const MainStackNavigator = () => {
   return (
-    <MainStack.Navigator initialRouteName='Rooms'>
+    <MainStack.Navigator
+      initialRouteName='Rooms'
+      screenOptions={{ headerTopInsetEnabled: false }}
+    >
       <MainStack.Screen name='Chat' component={ChatScreen} />
       <MainStack.Screen name='Rooms' component={RoomsScreen} />
     </MainStack.Navigator>
@@ -42,7 +45,7 @@ const MainStackNavigator = () => {
 
 const UsersStackNavigator = () => {
   return (
-    <UsersStack.Navigator>
+    <UsersStack.Navigator screenOptions={{ headerTopInsetEnabled: false }}>
       <UsersStack.Screen name='Users' component={UsersScreen} />
     </UsersStack.Navigator>
   )

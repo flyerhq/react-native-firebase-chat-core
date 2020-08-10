@@ -1,16 +1,16 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
-import { Message } from './types'
+import { MessageType } from './types'
 
 export const useMessages = (roomId: string) => {
-  const [messages, setMessages] = React.useState<Message[]>([])
+  const [messages, setMessages] = React.useState<MessageType.Any[]>([])
 
   React.useEffect(() => {
     return firestore()
       .collection(`rooms/${roomId}/messages`)
       .orderBy('timestamp', 'desc')
       .onSnapshot((query) => {
-        const newMessages: Message[] = []
+        const newMessages: MessageType.Any[] = []
 
         query.forEach((doc) => {
           const { timestamp, ...rest } = doc.data()
@@ -21,19 +21,22 @@ export const useMessages = (roomId: string) => {
               ? Math.floor(timestamp.toMillis() / 1000)
               : undefined,
             id: doc.id,
-          } as Message)
+          } as MessageType.Any)
         })
 
         setMessages(newMessages)
       })
   }, [roomId])
 
-  const sendMessage = async (message: Message) => {
-    await firestore().collection(`rooms/${roomId}/messages`).add({
-      authorId: message.authorId,
-      text: message.text,
-      timestamp: firestore.FieldValue.serverTimestamp(),
-    })
+  const sendMessage = async (message: MessageType.Any) => {
+    delete message.id
+
+    await firestore()
+      .collection(`rooms/${roomId}/messages`)
+      .add({
+        ...message,
+        timestamp: firestore.FieldValue.serverTimestamp(),
+      })
   }
 
   return { messages, sendMessage }
