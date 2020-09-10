@@ -26,10 +26,10 @@ const ChatScreen = ({ route }: Props) => {
             const fileName = response.uri.split('/').pop()
             const reference = storage().ref(fileName)
             await reference.putFile(response.uri)
-            const imageUrl = await reference.getDownloadURL()
+            const url = await reference.getDownloadURL()
             send({
               height: response.height,
-              imageUrl,
+              url,
               width: response.width,
             })
           } catch {}

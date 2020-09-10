@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace MessageType {
-  export type Any = Image | Text
+  export type Any = File | Image | Text
 
   interface Base {
     authorId: string
@@ -8,10 +8,18 @@ export namespace MessageType {
     timestamp: number
   }
 
+  export interface File extends Base {
+    mimeType?: string
+    name: string
+    size: number
+    type: 'file'
+    url: string
+  }
+
   export interface Image extends Base {
     height?: number
-    imageUrl: string
     type: 'image'
+    url: string
     width?: number
   }
 
