@@ -14,7 +14,6 @@ import FlipperKit
 @UIApplicationMain
 class AppDelegate: UMAppDelegateWrapper, RCTBridgeDelegate {
 
-//  var window: UIWindow?
   var moduleRegistryAdapter: UMModuleRegistryAdapter?
 
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -38,8 +37,8 @@ class AppDelegate: UMAppDelegateWrapper, RCTBridgeDelegate {
     return true
   }
 
-  func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule]! {
-    return moduleRegistryAdapter?.extraModules(for: bridge)
+  func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule] {
+    return moduleRegistryAdapter!.extraModules(for: bridge)
   }
 
   func sourceURL(for bridge: RCTBridge!) -> URL! {

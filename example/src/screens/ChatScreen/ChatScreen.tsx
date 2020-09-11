@@ -46,18 +46,15 @@ const ChatScreen = ({ route }: Props) => {
     )
   }
 
-  const handleFilePress = (file: MessageType.File) => {
+  const handleFilePress = async (file: MessageType.File) => {
     try {
-      FileSystem.downloadAsync(
+      const { uri } = await FileSystem.downloadAsync(
         file.url,
         FileSystem.documentDirectory + file.name
-      ).then(async ({ uri }) => {
-        console.log('Finished downloading to ', uri)
-        const fileUri =
-          Platform.OS === 'android' ? uri.replace('file://', '') : uri
-        console.log(fileUri)
-        await FileViewer.open(fileUri, { showOpenWithDialog: true })
-      })
+      )
+      const fileUri =
+        Platform.OS === 'android' ? uri.replace('file://', '') : uri
+      await FileViewer.open(fileUri, { showOpenWithDialog: true })
     } catch {}
   }
 
