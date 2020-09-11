@@ -7,5 +7,5 @@
 #import <React/RCTBundleURLProvider.h>
 #import <UMCore/UMAppDelegateWrapper.h>
 #import <UMCore/UMModuleRegistry.h>
-#import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
+#import <UMReactNativeAdapter/UMNativeModulesProxy.h>
