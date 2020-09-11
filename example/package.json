@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^3.8.0",
     "@flyerhq/react-native-chat-ui": "^0.2.3",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^8.4.1",
@@ -22,11 +23,14 @@
     "faker": "^4.1.0",
     "react": "^16.13.1",
     "react-native": "^0.63.2",
+    "react-native-document-picker": "^3.5.4",
+    "react-native-file-viewer": "^2.1.1",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-image-picker": "^2.3.3",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.7",
-    "react-native-screens": "^2.10.1"
+    "react-native-screens": "^2.10.1",
+    "react-native-unimodules": "^0.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
