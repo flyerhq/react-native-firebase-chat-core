@@ -12,16 +12,14 @@ import FlipperKit
 #endif
 
 @UIApplicationMain
-class AppDelegate: UMAppDelegateWrapper, RCTBridgeDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
 
-  var moduleRegistryAdapter: UMModuleRegistryAdapter?
+  var window: UIWindow?
 
-  override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     initializeFlipper(with: application)
 
     FirebaseApp.configure()
-
-    moduleRegistryAdapter = UMModuleRegistryAdapter(moduleRegistryProvider: UMModuleRegistryProvider())
 
     let bridge = RCTBridge(delegate: self, launchOptions: launchOptions)
     let rootView = RCTRootView(bridge: bridge!, moduleName: "example", initialProperties: nil)
@@ -35,10 +33,6 @@ class AppDelegate: UMAppDelegateWrapper, RCTBridgeDelegate {
     window?.makeKeyAndVisible()
 
     return true
-  }
-
-  func extraModules(for bridge: RCTBridge!) -> [RCTBridgeModule] {
-    return moduleRegistryAdapter!.extraModules(for: bridge)
   }
 
   func sourceURL(for bridge: RCTBridge!) -> URL! {
