@@ -16,7 +16,6 @@ import { Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import FileViewer from 'react-native-file-viewer'
 import ImagePicker from 'react-native-image-picker'
-import RNFetchBlob from 'rn-fetch-blob'
 import { MainStackParamList } from 'src/types'
 
 interface Props {
@@ -67,9 +66,8 @@ const ChatScreen = ({ route }: Props) => {
       })
       const fileName = response.name
       const reference = storage().ref(fileName)
-      const processedUri = await getPathForFirebaseStorage(response.uri)
-      console.log(processedUri)
-      await reference.putFile(processedUri)
+      // NOTE: File upload currently is not working for Android
+      await reference.putFile(response.uri)
       const url = await reference.getDownloadURL()
       sendAttachment({
         mimeType: response.type,
@@ -103,20 +101,6 @@ const ChatScreen = ({ route }: Props) => {
         }
       }
     )
-  }
-
-  const getPathForFirebaseStorage = async (uri: string) => {
-    if (Platform.OS === 'android') {
-      try {
-        console.log(uri)
-        const stat = await RNFetchBlob.fs.stat(uri)
-        return stat.path
-      } catch (e) {
-        console.log(e)
-        return ''
-      }
-    }
-    return uri
   }
 
   return (
