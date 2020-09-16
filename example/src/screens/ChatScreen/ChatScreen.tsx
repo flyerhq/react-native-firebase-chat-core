@@ -8,14 +8,14 @@ import {
   useFirebaseUser,
   useMessages,
 } from '@flyerhq/react-native-firebase-chat-core'
-import firebase from '@react-native-firebase/app'
+import { utils } from '@react-native-firebase/app'
 import storage from '@react-native-firebase/storage'
 import { RouteProp } from '@react-navigation/native'
 import React from 'react'
 import { Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import FileViewer from 'react-native-file-viewer'
-import ImagePicker from 'react-native-image-picker'
+import ImagePicker from 'react-native-image-crop-picker'
 import { MainStackParamList } from 'src/types'
 
 interface Props {
@@ -48,12 +48,11 @@ const ChatScreen = ({ route }: Props) => {
 
   const handleFilePress = async (file: MessageType.File) => {
     try {
-      const uri = firebase.utils.FilePath.DOCUMENT_DIRECTORY + file.name
+      const uri = utils.FilePath.DOCUMENT_DIRECTORY + file.name
       const reference = storage().ref(file.name)
       await reference.writeToFile(uri)
-      const fileUri =
-        Platform.OS === 'android' ? uri.replace('file://', '') : uri
-      await FileViewer.open(fileUri, { showOpenWithDialog: true })
+      const path = Platform.OS === 'android' ? uri.replace('file://', '') : uri
+      await FileViewer.open(path, { showOpenWithDialog: true })
     } catch {}
   }
 
@@ -71,7 +70,7 @@ const ChatScreen = ({ route }: Props) => {
       const url = await reference.getDownloadURL()
       sendAttachment({
         mimeType: response.type,
-        name: response.name,
+        name: fileName,
         size: response.size,
         url,
       })
@@ -82,25 +81,24 @@ const ChatScreen = ({ route }: Props) => {
     }
   }
 
-  const handleImageSelection = (sendAttachment: SendAttachmentCallback) => {
-    ImagePicker.showImagePicker(
-      { maxWidth: 1440, noData: true, quality: 0.7 },
-      async (response) => {
-        if (response) {
-          try {
-            const fileName = response.uri.split('/').pop()
-            const reference = storage().ref(fileName)
-            await reference.putFile(response.uri)
-            const url = await reference.getDownloadURL()
-            sendAttachment({
-              height: response.height,
-              url,
-              width: response.width,
-            })
-          } catch {}
-        }
-      }
-    )
+  const handleImageSelection = async (
+    sendAttachment: SendAttachmentCallback
+  ) => {
+    try {
+      const response = await ImagePicker.openPicker({
+        compressImageMaxWidth: 1440,
+        mediaType: 'photo',
+      })
+      const fileName = response.path.split('/').pop()
+      const reference = storage().ref(fileName)
+      await reference.putFile(response.path)
+      const url = await reference.getDownloadURL()
+      sendAttachment({
+        height: response.height,
+        url,
+        width: response.width,
+      })
+    } catch {}
   }
 
   return (
