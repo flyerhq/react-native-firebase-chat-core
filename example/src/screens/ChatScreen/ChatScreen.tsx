@@ -1,4 +1,5 @@
 import { useActionSheet } from '@expo/react-native-action-sheet'
+import getPath from '@flyerhq/react-native-android-uri-path'
 import {
   Chat,
   MessageType,
@@ -48,7 +49,7 @@ const ChatScreen = ({ route }: Props) => {
 
   const handleFilePress = async (file: MessageType.File) => {
     try {
-      const uri = utils.FilePath.DOCUMENT_DIRECTORY + file.name
+      const uri = utils.FilePath.DOCUMENT_DIRECTORY + '/' + file.name
       const reference = storage().ref(file.name)
       await reference.writeToFile(uri)
       const path = Platform.OS === 'android' ? uri.replace('file://', '') : uri
@@ -65,8 +66,7 @@ const ChatScreen = ({ route }: Props) => {
       })
       const fileName = response.name
       const reference = storage().ref(fileName)
-      // NOTE: File upload currently is not working for Android
-      await reference.putFile(response.uri)
+      await reference.putFile(getPath(response.uri))
       const url = await reference.getDownloadURL()
       sendAttachment({
         mimeType: response.type,

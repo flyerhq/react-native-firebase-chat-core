@@ -1287,6 +1287,11 @@
     "@types/hoist-non-react-statics" "^3.3.1"
     hoist-non-react-statics "^3.3.0"
 
+"@flyerhq/react-native-android-uri-path@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-android-uri-path/1.0.0/6665dade276c4dc38ec6b91aba1448628105b27f5de32f195df077ed82bdcf17#3b412afa86da1c35355fd1ebea676614dd78cb81"
+  integrity sha512-aC9a2RDq9llpLJ+VSU6owXe/a15M7LkjCuB2zHRrGwBiv2x+ur8aCVbFxfxZ9ZKxfEIYjAvAqWtbxM4UPU/2vg==
+
 "@flyerhq/react-native-chat-ui@^0.2.3":
   version "0.2.3"
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.2.3/558062da98961c3f9eba7d00ac1fdf3ffbe9cfa1a485888730b80d7cb06401ac#075135789e1506eadab79d6193b1080c5f1a1aa7"
