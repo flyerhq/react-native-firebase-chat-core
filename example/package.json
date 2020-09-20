@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@expo/react-native-action-sheet": "^3.8.0",
-    "@flyerhq/react-native-android-uri-path": "^1.0.0",
-    "@flyerhq/react-native-chat-ui": "^0.2.3",
+    "@flyerhq/react-native-android-uri-path": "^1.0.2",
+    "@flyerhq/react-native-chat-ui": "^0.3.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^8.4.3",
     "@react-native-firebase/auth": "^9.2.3",
@@ -38,7 +38,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/faker": "^4.1.12",
     "@types/jest": "^26.0.14",
-    "@types/react-native": "^0.63.18",
+    "@types/react-native": "^0.63.19",
     "@types/react-test-renderer": "^16.9.3",
     "babel-jest": "^26.3.0",
     "eslint": "^7.9.0",
@@ -46,7 +46,7 @@
     "jest": "^26.4.2",
     "metro-react-native-babel-preset": "^0.63.0",
     "react-test-renderer": "^16.13.1",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   },
   "jest": {
     "preset": "react-native",
