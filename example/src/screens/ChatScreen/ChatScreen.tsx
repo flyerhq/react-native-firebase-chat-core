@@ -12,7 +12,7 @@ import {
 import { utils } from '@react-native-firebase/app'
 import storage from '@react-native-firebase/storage'
 import { RouteProp } from '@react-navigation/native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import FileViewer from 'react-native-file-viewer'
@@ -26,6 +26,7 @@ interface Props {
 const ChatScreen = ({ route }: Props) => {
   const { firebaseUser } = useFirebaseUser()
   const { messages, sendMessage } = useMessages(route.params.roomId)
+  const [isAttachmentUploading, setAttachmentUploading] = useState(false)
   const { showActionSheetWithOptions } = useActionSheet()
 
   const handleAttachmentPress = (sendAttachment: SendAttachmentCallback) => {
@@ -64,6 +65,7 @@ const ChatScreen = ({ route }: Props) => {
       const response = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
       })
+      setAttachmentUploading(true)
       const fileName = response.name
       const reference = storage().ref(fileName)
       await reference.putFile(getPath(response.uri))
@@ -74,7 +76,9 @@ const ChatScreen = ({ route }: Props) => {
         size: response.size,
         url,
       })
+      setAttachmentUploading(false)
     } catch (err) {
+      setAttachmentUploading(false)
       if (!DocumentPicker.isCancel(err)) {
         // Handle user cancel
       }
@@ -89,6 +93,7 @@ const ChatScreen = ({ route }: Props) => {
         compressImageMaxWidth: 1440,
         mediaType: 'photo',
       })
+      setAttachmentUploading(true)
       const fileName = response.path.split('/').pop()
       const reference = storage().ref(fileName)
       await reference.putFile(response.path)
@@ -98,11 +103,15 @@ const ChatScreen = ({ route }: Props) => {
         url,
         width: response.width,
       })
-    } catch {}
+      setAttachmentUploading(false)
+    } catch {
+      setAttachmentUploading(false)
+    }
   }
 
   return (
     <Chat
+      isAttachmentUploading={isAttachmentUploading}
       messages={messages}
       onAttachmentPress={handleAttachmentPress}
       onFilePress={handleFilePress}
