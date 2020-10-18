@@ -9,8 +9,8 @@ export namespace MessageType {
   }
 
   export interface File extends Base {
+    fileName: string
     mimeType?: string
-    name: string
     size: number
     type: 'file'
     url: string
@@ -18,6 +18,8 @@ export namespace MessageType {
 
   export interface Image extends Base {
     height?: number
+    imageName: string
+    size: number
     type: 'image'
     url: string
     width?: number

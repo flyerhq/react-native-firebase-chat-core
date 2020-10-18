@@ -50,8 +50,8 @@ const ChatScreen = ({ route }: Props) => {
 
   const handleFilePress = async (file: MessageType.File) => {
     try {
-      const uri = utils.FilePath.DOCUMENT_DIRECTORY + '/' + file.name
-      const reference = storage().ref(file.name)
+      const uri = utils.FilePath.DOCUMENT_DIRECTORY + '/' + file.fileName
+      const reference = storage().ref(file.fileName)
       await reference.writeToFile(uri)
       const path = Platform.OS === 'android' ? uri.replace('file://', '') : uri
       await FileViewer.open(path, { showOpenWithDialog: true })
@@ -72,7 +72,7 @@ const ChatScreen = ({ route }: Props) => {
       const url = await reference.getDownloadURL()
       sendAttachment({
         mimeType: response.type,
-        name: fileName,
+        fileName,
         size: response.size,
         url,
       })
@@ -100,6 +100,8 @@ const ChatScreen = ({ route }: Props) => {
       const url = await reference.getDownloadURL()
       sendAttachment({
         height: response.height,
+        imageName: response.filename ?? fileName ?? '🖼',
+        size: response.size,
         url,
         width: response.width,
       })

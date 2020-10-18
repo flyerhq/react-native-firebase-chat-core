@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "React Native Firebase Chat Core",
   "homepage": "https://github.com/flyerhq/react-native-firebase-chat-core#readme",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Oleksandr Demchenko <alexdemchenko@yahoo.com>",
   "license": "MIT",
