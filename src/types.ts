@@ -26,9 +26,23 @@ export namespace MessageType {
   }
 
   export interface Text extends Base {
+    previewData?: PreviewData
     text: string
     type: 'text'
   }
+}
+
+export interface PreviewData {
+  description?: string
+  image?: PreviewDataImage
+  link?: string
+  title?: string
+}
+
+export interface PreviewDataImage {
+  height: number
+  url: string
+  width: number
 }
 
 export interface Room {

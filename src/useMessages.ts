@@ -1,9 +1,11 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 import { MessageType } from './types'
+import { useFirebaseUser } from './useFirebaseUser'
 
 export const useMessages = (roomId: string) => {
   const [messages, setMessages] = React.useState<MessageType.Any[]>([])
+  const { firebaseUser } = useFirebaseUser()
 
   React.useEffect(() => {
     return firestore()
@@ -33,6 +35,8 @@ export const useMessages = (roomId: string) => {
   }, [roomId])
 
   const sendMessage = async (message: MessageType.Any) => {
+    if (!firebaseUser) return
+
     const messageWithoutId: Partial<MessageType.Any> = { ...message }
     delete messageWithoutId.id
 
@@ -44,5 +48,20 @@ export const useMessages = (roomId: string) => {
       })
   }
 
-  return { messages, sendMessage }
+  const updateMessage = async (message: MessageType.Any) => {
+    if (!firebaseUser || message.authorId !== firebaseUser.uid) return
+
+    const messageWithoutIdAndTimestamp: Partial<MessageType.Any> = {
+      ...message,
+    }
+    delete messageWithoutIdAndTimestamp.id
+    delete messageWithoutIdAndTimestamp.timestamp
+
+    await firestore()
+      .collection(`rooms/${roomId}/messages`)
+      .doc(message.id)
+      .update({ ...messageWithoutIdAndTimestamp })
+  }
+
+  return { messages, sendMessage, updateMessage }
 }

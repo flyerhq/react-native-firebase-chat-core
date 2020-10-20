@@ -6,6 +6,7 @@ import {
   SendAttachmentCallback,
 } from '@flyerhq/react-native-chat-ui'
 import {
+  PreviewData,
   useFirebaseUser,
   useMessages,
 } from '@flyerhq/react-native-firebase-chat-core'
@@ -25,7 +26,9 @@ interface Props {
 
 const ChatScreen = ({ route }: Props) => {
   const { firebaseUser } = useFirebaseUser()
-  const { messages, sendMessage } = useMessages(route.params.roomId)
+  const { messages, sendMessage, updateMessage } = useMessages(
+    route.params.roomId
+  )
   const [isAttachmentUploading, setAttachmentUploading] = useState(false)
   const { showActionSheetWithOptions } = useActionSheet()
 
@@ -111,12 +114,24 @@ const ChatScreen = ({ route }: Props) => {
     }
   }
 
+  const handlePreviewDataFetched = ({
+    message,
+    previewData,
+  }: {
+    message: MessageType.Text
+    previewData: PreviewData
+  }) => {
+    const newMessage: MessageType.Text = { ...message, previewData }
+    updateMessage(newMessage)
+  }
+
   return (
     <Chat
       isAttachmentUploading={isAttachmentUploading}
       messages={messages}
       onAttachmentPress={handleAttachmentPress}
       onFilePress={handleFilePress}
+      onPreviewDataFetched={handlePreviewDataFetched}
       onSendPress={sendMessage}
       user={{ id: firebaseUser?.uid ?? '', name: '' }}
     />

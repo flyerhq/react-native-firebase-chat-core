@@ -761,13 +761,13 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-android-uri-path/1.0.2/18547e06f4682ab0a4ee6f7b24d9cfbb42ea33286d5f4db2b0b2e863759843c3#1556b6075f3ef7d959a0c7e5e937b170ac8c0495"
   integrity sha512-3qPE4RQftsNn79JUhJuRnmMdgoq7QZYt5+NqB5KxXOgSiJz1hmMWqYl1Ye0x0a/XlgR9Leyvjti/8zl7g9v3Ug==
 
-"@flyerhq/react-native-chat-ui@^0.4.2":
-  version "0.4.2"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.4.2/44d2e6818a0fbf881dc3d8adf5d837c27ea1c7d84098cee6e7328da39c76d7b7#b760142fea7da2796036a10923182da3d32c691e"
-  integrity sha512-fCjB5fobBtFHTwPla9LzO6+9JCx2oT8vSQQcdX6nShe1l307cgPsbLewnravZ3AeoaIlCeVGFgG+lV8quuAefA==
+"@flyerhq/react-native-chat-ui@^0.4.3":
+  version "0.4.3"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.4.3/5a63e704b08df2191cd946ef55f2650254803ac251e3b5ae47187e6bdf9aae03#81d245256b334c7ee4302a4b99b0a39339b01672"
+  integrity sha512-yEX9k+mcXaRLvAR3rbJddWtw0akM0IFVBASYKwEdMnXQLCBXxnVGqtuVrUCIpGZTg+/ASZsG4D9nyZoyA3QEeg==
   dependencies:
     "@flyerhq/react-native-keyboard-accessory-view" "^1.5.1"
-    "@flyerhq/react-native-link-preview" "^1.0.3"
+    "@flyerhq/react-native-link-preview" "^1.0.5"
     dayjs "^1.9.1"
     react-native-image-viewing "^0.2.0"
     react-native-parsed-text "^0.0.22"
@@ -777,10 +777,10 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/1.5.1/854a217d9d1498dcb9343cb7ffd99a8ded21adf4c0dc4ec9b5804fabb5ddadec#84bae9bb96a2cf4ef7145e232697905ef50ad797"
   integrity sha512-XQKji5EeQaqDJWlhUPjTxV2Uoa4ELebVS23sHcNd+i90qgiwrfa74vGXljV/T2AdRMQ4L0Pspz4NFujrAeqOyQ==
 
-"@flyerhq/react-native-link-preview@^1.0.3":
-  version "1.0.3"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-link-preview/1.0.3/b23fd4715d899e7dd2bfb8eefe237b1f932bb690d68f1c52543acc0084fff7ec#41de2482e4a29536704eb545b47fe53e2cd8e5a1"
-  integrity sha512-b8CXHNzH6iqLMNhpnKEcT3SotO8GHavYK7reNwMDGDza5/bbs2CuKKuHoVEPTm64F8GFb1ekgwUBXOIknf2qdA==
+"@flyerhq/react-native-link-preview@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-link-preview/1.0.5/1cf152f72c59ad8f216a4f9d88f45813737f9272dd2af23164b7a22a25b098fa#a1dd5842f1714651d9e52ca41c9b44207bb04843"
+  integrity sha512-Xbfvik+xKJmsAh0JAE/EDkJiCpNPdk2FbuWOqbeHWjFp6H4lvNEonXwP8lIfBxoEwwV9s34H+Pkd474FIfixPA==
   dependencies:
     html-entities "^1.3.1"
 
