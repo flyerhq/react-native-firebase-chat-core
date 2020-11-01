@@ -761,21 +761,21 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-android-uri-path/1.0.2/18547e06f4682ab0a4ee6f7b24d9cfbb42ea33286d5f4db2b0b2e863759843c3#1556b6075f3ef7d959a0c7e5e937b170ac8c0495"
   integrity sha512-3qPE4RQftsNn79JUhJuRnmMdgoq7QZYt5+NqB5KxXOgSiJz1hmMWqYl1Ye0x0a/XlgR9Leyvjti/8zl7g9v3Ug==
 
-"@flyerhq/react-native-chat-ui@^0.6.1":
-  version "0.6.1"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.6.1/df5e1c619962bd6a1ed82db776467def6e4b380dcde2c969dd355518910a7397#5f8d126f9b9211220c865d693ee838527ad4206a"
-  integrity sha512-HlRRGEBYWTiSbMiWEDBDcnJysjg+EgjEnX09l+BxB8X20QUvSBWPUUuNbFMg1m8NyxcA7SVwt5kerjeEi9A6mg==
+"@flyerhq/react-native-chat-ui@^0.6.2":
+  version "0.6.2"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.6.2/35f73faf357ecd5457e1d23d453b0a1abe4bde3afb1b4a1060e26ca090616ad0#ab356058b7ffad870f3ce35a5189f14994c15775"
+  integrity sha512-8C/dlFnPvbpkiyhU0QDxO7i5ZGIsPRuia4vVtWdjhjW1YSDuE5nR1tMDwouzdynQzxfB8A/tPoDFmzl9HKvb1A==
   dependencies:
-    "@flyerhq/react-native-keyboard-accessory-view" "^2.0.0"
+    "@flyerhq/react-native-keyboard-accessory-view" "^2.1.0"
     "@flyerhq/react-native-link-preview" "^1.0.5"
     dayjs "^1.9.1"
     react-native-image-viewing "^0.2.0"
     react-native-parsed-text "^0.0.22"
 
-"@flyerhq/react-native-keyboard-accessory-view@^2.0.0":
-  version "2.0.0"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/2.0.0/dfec7c40d6cebff4c342d215cebb06eb3c28a815390dbaddd126ac2666966dd7#89600fd9376b1e40c37258a175c65afec8158661"
-  integrity sha512-+ajV8ZzjO+S6qjjNHfYeIkflP5blzunALFohdiP7j8SgtokTjupOLW+iLeuMPXgjeaMdhETrTgNcxN1jXjMWnw==
+"@flyerhq/react-native-keyboard-accessory-view@^2.1.0":
+  version "2.1.0"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/2.1.0/5b72cbe497ddfcb4c6ebc8281b0ba14eb5394add024183af1a7073fd76ebaef2#bae1045be1c039e36b85e1c4440075df99e20177"
+  integrity sha512-HsUoKtYK+wgVwwymkWeyy9X7IoCXrwCC+0oD/l9oTsZmDuiznwCLgToXAuO08dqxnRQdN5kMkPuKsb1T/tx9Ag==
 
 "@flyerhq/react-native-link-preview@^1.0.5":
   version "1.0.5"
