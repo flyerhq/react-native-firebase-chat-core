@@ -1,12 +1,15 @@
 {
   "name": "@flyerhq/react-native-firebase-chat-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React Native Firebase Chat Core",
   "homepage": "https://github.com/flyerhq/react-native-firebase-chat-core#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Oleksandr Demchenko <alexdemchenko@yahoo.com>",
-  "license": "MIT",
+  "contributors": [
+    "Volodymyr Smolianinov <voidozzer@gmail.com>"
+  ],
+  "license": "Apache-2.0",
   "files": [
     "lib"
   ],
