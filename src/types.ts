@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace MessageType {
   export type Any = File | Image | Text
 

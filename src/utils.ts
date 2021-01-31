@@ -2,6 +2,7 @@ import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
+
 import { Room, User } from './types'
 
 interface CreateChatData {

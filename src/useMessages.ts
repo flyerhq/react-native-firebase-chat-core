@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
+
 import { MessageType } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 
