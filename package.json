@@ -7,6 +7,7 @@
   "types": "lib/index.d.ts",
   "author": "Oleksandr Demchenko <alexdemchenko@yahoo.com>",
   "contributors": [
+    "Vitalii Danylov <vitaliidanylov1992@gmail.com>",
     "Volodymyr Smolianinov <voidozzer@gmail.com>"
   ],
   "license": "Apache-2.0",
