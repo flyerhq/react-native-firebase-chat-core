@@ -15,8 +15,12 @@ interface Props {
 }
 
 const RegisterScreen = ({ navigation }: Props) => {
+  const firstName = faker.name.firstName()
+  const lastName = faker.name.lastName()
   const passwordInput = useRef<TextInput>(null)
-  const [email, setEmail] = useState(faker.internet.email())
+  const [email, setEmail] = useState(
+    `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${faker.internet.domainName()}`
+  )
   const [password, setPassword] = useState('Qawsed1-')
   const [registering, setRegistering] = useState(false)
 
@@ -28,14 +32,15 @@ const RegisterScreen = ({ navigation }: Props) => {
         password
       )
       await createUserInFirestore({
-        avatarUrl: faker.image.avatar(),
-        firstName: faker.name.firstName(),
+        avatarUrl: `https://i.pravatar.cc/300?u=${email}`,
+        firstName,
         id: credential.user.uid,
-        lastName: faker.name.lastName(),
+        lastName,
       })
       setRegistering(false)
       navigation.navigate('Main')
     } catch (e) {
+      setRegistering(false)
       Alert.alert('Error', e.message, [{ text: 'OK' }])
     }
   }

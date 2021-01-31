@@ -40,24 +40,10 @@ const UsersScreen = ({ navigation }: Props) => {
       })
   })
 
-  const renderItem = ({ item }: { item: User }) => (
-    <TouchableOpacity onPress={() => handleOnPress(item)}>
-      <View style={styles.userContainer}>
-        <Image source={{ uri: item.avatarUrl }} style={styles.userImage} />
-        <Text>
-          {item.firstName} {item.lastName}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  )
-
-  const handleOnPress = async (otherUser: User) => {
+  const handlePress = async (otherUser: User) => {
     if (!firebaseUser) return
 
-    const room = await createRoom({
-      firebaseUser,
-      roomData: { otherUser },
-    })
+    const room = await createRoom({ firebaseUser, otherUser })
 
     navigation.dispatch(
       CommonActions.navigate({
@@ -66,6 +52,17 @@ const UsersScreen = ({ navigation }: Props) => {
       })
     )
   }
+
+  const renderItem = ({ item }: { item: User }) => (
+    <TouchableOpacity onPress={() => handlePress(item)}>
+      <View style={styles.userContainer}>
+        <Image source={{ uri: item.avatarUrl }} style={styles.userImage} />
+        <Text>
+          {item.firstName} {item.lastName}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  )
 
   return (
     <FlatList

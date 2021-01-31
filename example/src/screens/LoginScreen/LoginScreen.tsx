@@ -41,6 +41,7 @@ const LoginScreen = ({ navigation }: Props) => {
       setLoggingIn(false)
       navigation.navigate('Main')
     } catch (e) {
+      setLoggingIn(false)
       Alert.alert('Error', e.message, [{ text: 'OK' }])
     }
   }

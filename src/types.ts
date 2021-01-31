@@ -5,7 +5,7 @@ export namespace MessageType {
     authorId: string
     id: string
     status?: 'error' | 'read' | 'sending' | 'sent'
-    timestamp: number
+    timestamp?: number
     type: 'file' | 'image' | 'text'
   }
 

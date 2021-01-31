@@ -5,77 +5,80 @@ import firestore, {
 
 import { Room, User } from './types'
 
-interface CreateChatData {
-  otherUser: User
-}
-
-interface CreateGroupData {
+export const createGroupRoom = async ({
+  firebaseUser,
+  imageUrl,
+  name,
+  users,
+}: {
+  firebaseUser: FirebaseAuthTypes.User
   imageUrl?: string
   name: string
   users: User[]
-}
-
-type CreateRoomData = CreateChatData | CreateGroupData
-
-export const createRoom = async ({
-  firebaseUser,
-  roomData,
-}: {
-  firebaseUser: FirebaseAuthTypes.User
-  roomData: CreateRoomData
 }) => {
-  const isChat = (
-    verifyData: CreateChatData | CreateGroupData
-  ): verifyData is CreateChatData => {
-    return (verifyData as CreateChatData).otherUser !== undefined
-  }
-
-  if (isChat(roomData)) {
-    const query = await firestore()
-      .collection('rooms')
-      .where('userIds', 'array-contains', firebaseUser.uid)
-      .get()
-
-    const rooms = await processRoomsQuery({ firebaseUser, query })
-
-    const existingRoom = rooms.find((room) => {
-      if (room.isGroup) return false
-
-      const userIds = room.users.map((u) => u.id)
-      return (
-        userIds.includes(firebaseUser.uid) &&
-        userIds.includes(roomData.otherUser.id)
-      )
-    })
-
-    if (existingRoom) {
-      return existingRoom
-    }
-  }
-
   const currentUser = await fetchUser(firebaseUser.uid)
 
-  const imageUrl = isChat(roomData) ? undefined : roomData.imageUrl
-  const isGroup = !isChat(roomData)
-  const name = isChat(roomData) ? undefined : roomData.name
-  const users = [currentUser].concat(
-    isChat(roomData) ? roomData.otherUser : roomData.users.map((u) => u)
-  )
+  const roomUsers = [currentUser].concat(users)
 
   const room = await firestore()
     .collection('rooms')
     .add({
       imageUrl,
-      isGroup,
-      userIds: users.map((u) => u.id),
+      isGroup: true,
       name,
+      userIds: roomUsers.map((u) => u.id),
     })
 
   return {
     id: room.id,
     imageUrl,
-    isGroup,
+    isGroup: true,
     name,
+    users: roomUsers,
+  } as Room
+}
+
+export const createRoom = async ({
+  firebaseUser,
+  otherUser,
+}: {
+  firebaseUser: FirebaseAuthTypes.User
+  otherUser: User
+}) => {
+  const query = await firestore()
+    .collection('rooms')
+    .where('userIds', 'array-contains', firebaseUser.uid)
+    .get()
+
+  const rooms = await processRoomsQuery({ firebaseUser, query })
+
+  const existingRoom = rooms.find((room) => {
+    if (room.isGroup) return false
+
+    const userIds = room.users.map((u) => u.id)
+    return userIds.includes(firebaseUser.uid) && userIds.includes(otherUser.id)
+  })
+
+  if (existingRoom) {
+    return existingRoom
+  }
+
+  const currentUser = await fetchUser(firebaseUser.uid)
+
+  const users = [currentUser].concat(otherUser)
+
+  const room = await firestore()
+    .collection('rooms')
+    .add({
+      imageUrl: undefined,
+      isGroup: false,
+      name: undefined,
+      userIds: users.map((u) => u.id),
+    })
+
+  return {
+    id: room.id,
+    isGroup: false,
     users,
   } as Room
 }
