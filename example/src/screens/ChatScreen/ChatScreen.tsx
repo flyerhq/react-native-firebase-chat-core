@@ -133,7 +133,7 @@ const ChatScreen = ({ route }: Props) => {
       onFilePress={handleFilePress}
       onPreviewDataFetched={handlePreviewDataFetched}
       onSendPress={sendMessage}
-      user={{ id: firebaseUser?.uid ?? '', name: '' }}
+      user={{ id: firebaseUser?.uid ?? '' }}
     />
   )
 }
