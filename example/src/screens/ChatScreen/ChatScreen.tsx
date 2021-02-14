@@ -1,10 +1,6 @@
 import { useActionSheet } from '@expo/react-native-action-sheet'
 import getPath from '@flyerhq/react-native-android-uri-path'
-import {
-  Chat,
-  MessageType,
-  SendAttachmentCallback,
-} from '@flyerhq/react-native-chat-ui'
+import { Chat, MessageType } from '@flyerhq/react-native-chat-ui'
 import {
   PreviewData,
   useFirebaseUser,
@@ -32,7 +28,7 @@ const ChatScreen = ({ route }: Props) => {
   const [isAttachmentUploading, setAttachmentUploading] = useState(false)
   const { showActionSheetWithOptions } = useActionSheet()
 
-  const handleAttachmentPress = (sendAttachment: SendAttachmentCallback) => {
+  const handleAttachmentPress = () => {
     showActionSheetWithOptions(
       {
         options: ['Photo', 'File', 'Cancel'],
@@ -41,10 +37,10 @@ const ChatScreen = ({ route }: Props) => {
       (buttonIndex) => {
         switch (buttonIndex) {
           case 0:
-            handleImageSelection(sendAttachment)
+            handleImageSelection()
             break
           case 1:
-            handleFileSelection(sendAttachment)
+            handleFileSelection()
             break
         }
       }
@@ -61,9 +57,7 @@ const ChatScreen = ({ route }: Props) => {
     } catch {}
   }
 
-  const handleFileSelection = async (
-    sendAttachment: SendAttachmentCallback
-  ) => {
+  const handleFileSelection = async () => {
     try {
       const response = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
@@ -73,12 +67,13 @@ const ChatScreen = ({ route }: Props) => {
       const reference = storage().ref(fileName)
       await reference.putFile(getPath(response.uri))
       const url = await reference.getDownloadURL()
-      sendAttachment({
-        mimeType: response.type,
+      const message: MessageType.PartialFile = {
         fileName,
+        mimeType: response.type,
         size: response.size,
         url,
-      })
+      }
+      sendMessage(message)
       setAttachmentUploading(false)
     } catch (err) {
       setAttachmentUploading(false)
@@ -88,9 +83,7 @@ const ChatScreen = ({ route }: Props) => {
     }
   }
 
-  const handleImageSelection = async (
-    sendAttachment: SendAttachmentCallback
-  ) => {
+  const handleImageSelection = async () => {
     try {
       const response = await ImagePicker.openPicker({
         compressImageMaxWidth: 1440,
@@ -101,13 +94,14 @@ const ChatScreen = ({ route }: Props) => {
       const reference = storage().ref(fileName)
       await reference.putFile(response.path)
       const url = await reference.getDownloadURL()
-      sendAttachment({
+      const message: MessageType.PartialImage = {
         height: response.height,
         imageName: response.filename ?? fileName ?? '🖼',
         size: response.size,
         url,
         width: response.width,
-      })
+      }
+      sendMessage(message)
       setAttachmentUploading(false)
     } catch {
       setAttachmentUploading(false)

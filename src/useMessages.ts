@@ -35,17 +35,26 @@ export const useMessages = (roomId: string) => {
       })
   }, [roomId])
 
-  const sendMessage = async (message: MessageType.Any) => {
+  const sendMessage = async (message: MessageType.PartialAny) => {
     if (!firebaseUser) return
 
-    const messageWithoutId: Partial<MessageType.Any> = { ...message }
-    delete messageWithoutId.id
+    let type: 'file' | 'image' | 'text' | undefined
+
+    if (message.hasOwnProperty('text')) {
+      type = 'text'
+    } else if (message.hasOwnProperty('imageName')) {
+      type = 'image'
+    } else if (message.hasOwnProperty('fileName')) {
+      type = 'file'
+    }
 
     await firestore()
       .collection(`rooms/${roomId}/messages`)
       .add({
-        ...messageWithoutId,
+        ...message,
+        authorId: firebaseUser.uid,
         timestamp: firestore.FieldValue.serverTimestamp(),
+        type,
       })
   }
 

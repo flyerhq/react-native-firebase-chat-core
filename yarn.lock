@@ -729,9 +729,9 @@
     resolve-from "^5.0.0"
 
 "@istanbuljs/schema@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
-  integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
+  integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
 "@jest/console@^24.9.0":
   version "24.9.0"
@@ -1103,23 +1103,23 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
-"@react-native-firebase/app@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-10.7.0.tgz#db0cd77c2d5e83024797073256d471dc9b27085c"
-  integrity sha512-C8H90p7lf+ZIxA22lxypuA7uJOWRX4GLlll6EXZTnUXHNYaIM8zW8/RPHECJZRPYwisbe+2pIlDwFJjyiRM+Jw==
+"@react-native-firebase/app@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-10.8.0.tgz#130dd841183d45ff378e6aab2b6e89a30d7c499d"
+  integrity sha512-VIWVpqb+V4ltOEmpUEfcsA/ZmcV+FLWGMlRGN+xB/cXorD3nYhYF/LPxOtX7TOHrlxPeL2dikLry9hKv4PlZCw==
   dependencies:
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-10.7.0.tgz#492bb8f0dbfdf7143e7c63d3244355042d589922"
-  integrity sha512-riycjQmoeZ56BiSMQibyXJwjUwHKeKOxC5nRXWUN5mnDP1d9hWbnN5qs+A1Pc68DKtoWDmfIeOJBC8xt28827A==
+"@react-native-firebase/auth@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-10.8.0.tgz#a13da7a77b9d3f356a94c081e3aedbfa8230e037"
+  integrity sha512-aKKImq/z1kaWNvssWqb0aBgtctH34Pnke6wFTM6GE3R3uGZ57d+lPVl+57az8D3nj5xVwJyNftl6/1WmPzCPBw==
 
-"@react-native-firebase/firestore@^10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-10.7.0.tgz#eb7ebb0ab9a192af1a7d448327b99a4a87d8a4c7"
-  integrity sha512-wDH78SdmDEdWebFqujinqTqfJMVDcx9W57cEzY09PQcmI5xjdalSyU4gj8AXDTB0718/kDK6C7nhzOHZOjln0w==
+"@react-native-firebase/firestore@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-10.8.0.tgz#1efa15d71b7c89b8c92a36198a2c2c651f8d9c82"
+  integrity sha512-HRt4q/P15ejmHjtQ5j21vFXpSmpMYE9JYyFo6PSonL9wFtuA8ujEeX/OVUf1c8JRAZMdTCVdchHUDdFsABUWUg==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
@@ -1231,19 +1231,19 @@
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
 "@types/prettier@^2.0.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.0.tgz#a4e8205a4955690eef712a6d0394a1d2e121e721"
-  integrity sha512-O3SQC6+6AySHwrspYn2UvC6tjo6jCTMMmylxZUFhE1CulVu5l3AxU6ca9lrJDTQDVllF62LIxVSx5fuYL6LiZg==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.1.tgz#374e31645d58cb18a07b3ecd8e9dede4deb2cccd"
+  integrity sha512-DxZZbyMAM9GWEzXL+BMZROWz9oo6A9EilwwOMET2UVu2uZTqMWS5S69KVtuVKaRjCUpcrOXRalet86/OpG4kqw==
 
 "@types/prop-types@*":
   version "15.7.3"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/react-native@^0.63.48":
-  version "0.63.48"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.48.tgz#83ebffe2900b8dee7e420bad9d8d0efea86efe92"
-  integrity sha512-6+7WsHfVkcYEwO/u3wxarMwZq/mbJZ5iDYCXwX5bs8lm0vEIuBdMsk9jrwxuCBvaXhGdB0lriwTgfew/7VN2Kg==
+"@types/react-native@^0.63.49":
+  version "0.63.49"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.49.tgz#b9a4781a0543763f0079c3ef2ba2148a4509b32e"
+  integrity sha512-ivTn2n9xsmlwSO1GygkwEMjkrSDqPAJVhbhsl3EffGtG6zWPaJ+AJVImPoBZN1VY8GItGPPlLGEb0i6LGb83VA==
   dependencies:
     "@types/react" "*"
 
@@ -5034,9 +5034,9 @@ node-notifier@^8.0.0:
     which "^2.0.2"
 
 node-stream-zip@^1.9.1:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.13.0.tgz#1cfc716137a5673e6362d2d08e99be810c8ba95f"
-  integrity sha512-dqOt0Zaex6I9PUd/yfh9G0GqjZuky2kkxQaxH4yylH0y3hdg4r9BfeH2SChwQslR+YOd6l7mU14ZJiVI6BbJ4A==
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.13.1.tgz#2f8f9a360ec7ae23a80744c4c3862bf3aa3e7892"
+  integrity sha512-7vFtf27xgafGV1e440J+FrQSf+5kvkMM9lX/dHRcyAP1dT9+JqM/5L0PDlbeWsdpQjsPWJk7YZHqkHUWf+4Izg==
 
 normalize-package-data@^2.5.0:
   version "2.5.0"

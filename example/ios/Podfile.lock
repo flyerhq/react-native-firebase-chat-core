@@ -608,18 +608,18 @@ PODS:
     - React-jsi (= 0.63.4)
   - RNCMaskedView (0.1.10):
     - React
-  - RNFBApp (10.7.0):
+  - RNFBApp (10.8.0):
     - Firebase/CoreOnly (~> 7.6.0)
     - React-Core
-  - RNFBAuth (10.7.0):
+  - RNFBAuth (10.8.0):
     - Firebase/Auth (~> 7.6.0)
     - React-Core
     - RNFBApp
-  - RNFBFirestore (10.7.0):
+  - RNFBFirestore (10.8.0):
     - Firebase/Firestore (~> 7.6.0)
     - React-Core
     - RNFBApp
-  - RNFBStorage (10.7.0):
+  - RNFBStorage (10.8.0):
     - Firebase/Storage (~> 7.6.0)
     - React-Core
     - RNFBApp
@@ -627,12 +627,12 @@ PODS:
     - React-Core
   - RNGestureHandler (1.10.1):
     - React-Core
-  - RNImageCropPicker (0.35.3):
+  - RNImageCropPicker (0.36.0):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.35.3)
+    - RNImageCropPicker/QBImagePickerController (= 0.36.0)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.35.3):
+  - RNImageCropPicker/QBImagePickerController (0.36.0):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -872,13 +872,13 @@ SPEC CHECKSUMS:
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNFBApp: d75aa9756bca20df2c902a3f7e11bc276f03c65b
-  RNFBAuth: 77664661b9b75a8af2c194145cc4af52c151f2ac
-  RNFBFirestore: a767270f495a44465dda98de30ad4ea4b82f091e
-  RNFBStorage: 3d87e4ee72171f84178d76810eac26118e2b8396
+  RNFBApp: 97b618641633d6d23187a9d0537c3893482c483f
+  RNFBAuth: 7c6c9e7289d98709cd5d1333d829925f81823375
+  RNFBFirestore: 859fc78b3dc89ef10e430b39cd9f14e07ef4e158
+  RNFBStorage: e6e439c14e413f6810d304807bf7295ebe22fc7b
   RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
   RNGestureHandler: 5e58135436aacc1c5d29b75547d3d2b9430d052c
-  RNImageCropPicker: 08ba3a2e2f4f8833d606f01906c371e382c4dea9
+  RNImageCropPicker: e641bf83ac47324994cac139bde74635ec52c17c
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
