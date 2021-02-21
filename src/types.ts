@@ -14,7 +14,7 @@ export namespace MessageType {
     fileName: string
     mimeType?: string
     size: number
-    url: string
+    uri: string
   }
 
   export interface File extends Base, PartialFile {
@@ -25,7 +25,7 @@ export namespace MessageType {
     height?: number
     imageName: string
     size: number
-    url: string
+    uri: string
     width?: number
   }
 

@@ -66,12 +66,12 @@ const ChatScreen = ({ route }: Props) => {
       const fileName = response.name
       const reference = storage().ref(fileName)
       await reference.putFile(getPath(response.uri))
-      const url = await reference.getDownloadURL()
+      const uri = await reference.getDownloadURL()
       const message: MessageType.PartialFile = {
         fileName,
         mimeType: response.type,
         size: response.size,
-        url,
+        uri,
       }
       sendMessage(message)
       setAttachmentUploading(false)
@@ -93,12 +93,12 @@ const ChatScreen = ({ route }: Props) => {
       const fileName = response.path.split('/').pop()
       const reference = storage().ref(fileName)
       await reference.putFile(response.path)
-      const url = await reference.getDownloadURL()
+      const uri = await reference.getDownloadURL()
       const message: MessageType.PartialImage = {
         height: response.height,
         imageName: response.filename ?? fileName ?? '🖼',
         size: response.size,
-        url,
+        uri,
         width: response.width,
       }
       sendMessage(message)
