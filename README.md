@@ -1,10 +1,24 @@
-# React Native Firebase Chat Core
+<h1 align="center">React Native Firebase Chat Core</h1>
 
-Actively maintained, community-driven Firebase BaaS for chat applications with an optional [chat UI](https://github.com/flyerhq/react-native-chat-ui).
+<p align="center">
+  Actively maintained, community-driven Firebase BaaS for chat applications with an optional <a href="https://github.com/flyerhq/react-native-chat-ui">chat UI</a>.
+</p>
 
-[![build](https://github.com/flyerhq/react-native-firebase-chat-core/workflows/build/badge.svg)](https://github.com/flyerhq/react-native-firebase-chat-core/actions?query=workflow%3Abuild)
+<p align="center">
+  <a href="https://github.com/flyerhq/react-native-firebase-chat-core/actions?query=workflow%3Abuild">
+    <img alt="Build Status" src="https://github.com/flyerhq/react-native-firebase-chat-core/workflows/build/badge.svg" />
+  </a>
+</p>
 
-<img></img>
+<br>
+
+<p align="center">
+  <a href="https://flyer.chat">
+    <img alt="Chat Image" src="https://user-images.githubusercontent.com/14123304/111913228-72fa3280-8a6d-11eb-8838-382a270d66f5.png" />
+  </a>
+</p>
+
+<br>
 
 Flyer Chat is a platform for creating in-app chat experiences using React Native or [Flutter](https://github.com/flyerhq/flutter_firebase_chat_core). This repository contains Firebase BaaS implementation for React Native. We are also working on our more advanced SaaS and self-hosted solutions.
 
