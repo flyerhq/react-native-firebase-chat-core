@@ -733,10 +733,10 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-android-uri-path/2.0.1/cf45b9cdfefdebb7b4274da82fc9549eb1e2b080bcd0f8833418eaefacdd5fef#320874352bce85c0fd6611bf7c6298237096e1a9"
   integrity sha512-NFgy49+jpR+D+adxhUcbC1ECg8GYGgd5JzduVa+U5jx91DnJB4lFF1Qufiq/lWVcIyBwOF8oPqbFaetrGFDnKA==
 
-"@flyerhq/react-native-chat-ui@^0.7.3":
-  version "0.7.3"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.7.3/6195777dd3acba6835f12aefd660862f3645ab64bc9159189846aa6a4be00beb#37dbb3be3f123b488513c8a202c4166ee1881661"
-  integrity sha512-BI9B+7vA7S2Rv5rG2PgKNHwyxg553I+QbGhlya1JZqDT3PHiJqyppBYn6X5ufhObi5/s0L3Rra+AqZX/fK1ACg==
+"@flyerhq/react-native-chat-ui@^0.7.4":
+  version "0.7.4"
+  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.7.4/b15fe345c38850ea0ddf468f59717ce86e970ea71ae7ba5ef031fc76ab7a1ca2#5e125f28996ee8043393ecce34b7fb01dbc8b195"
+  integrity sha512-TSecaNNy1tqdISnlqmv7G/hiWoC+7jWIdEsJmAAU5cKbu/BhIkqN49gkv9Gh5jm1ubTu4GVH8d669wYUu40o1Q==
   dependencies:
     "@flyerhq/react-native-keyboard-accessory-view" "^2.1.1"
     "@flyerhq/react-native-link-preview" "^1.0.6"
