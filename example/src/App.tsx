@@ -1,7 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import { StatusBar } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 
 import {
@@ -54,27 +52,24 @@ const UsersStackNavigator = () => {
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle='dark-content' />
-      <NavigationContainer>
-        <RootStack.Navigator
-          initialRouteName='Main'
-          screenOptions={{ headerShown: false }}
-        >
-          <RootStack.Screen
-            name='Auth'
-            component={AuthStackNavigator}
-            options={{ stackPresentation: 'modal' }}
-          />
-          <RootStack.Screen name='Main' component={MainStackNavigator} />
-          <RootStack.Screen
-            name='UsersStack'
-            component={UsersStackNavigator}
-            options={{ stackPresentation: 'modal' }}
-          />
-        </RootStack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <RootStack.Navigator
+        initialRouteName='Main'
+        screenOptions={{ headerShown: false }}
+      >
+        <RootStack.Screen
+          name='Auth'
+          component={AuthStackNavigator}
+          options={{ stackPresentation: 'modal' }}
+        />
+        <RootStack.Screen name='Main' component={MainStackNavigator} />
+        <RootStack.Screen
+          name='UsersStack'
+          component={UsersStackNavigator}
+          options={{ stackPresentation: 'modal' }}
+        />
+      </RootStack.Navigator>
+    </NavigationContainer>
   )
 }
 

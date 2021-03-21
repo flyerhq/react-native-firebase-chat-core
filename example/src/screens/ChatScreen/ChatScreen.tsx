@@ -13,7 +13,7 @@ import React, { useState } from 'react'
 import { Platform } from 'react-native'
 import DocumentPicker from 'react-native-document-picker'
 import FileViewer from 'react-native-file-viewer'
-import ImagePicker from 'react-native-image-crop-picker'
+import { launchImageLibrary } from 'react-native-image-picker'
 import { MainStackParamList } from 'src/types'
 
 interface Props {
@@ -83,29 +83,32 @@ const ChatScreen = ({ route }: Props) => {
     }
   }
 
-  const handleImageSelection = async () => {
-    try {
-      const response = await ImagePicker.openPicker({
-        compressImageMaxWidth: 1440,
+  const handleImageSelection = () => {
+    launchImageLibrary(
+      {
+        maxWidth: 1440,
         mediaType: 'photo',
-      })
-      setAttachmentUploading(true)
-      const fileName = response.path.split('/').pop()
-      const reference = storage().ref(fileName)
-      await reference.putFile(response.path)
-      const uri = await reference.getDownloadURL()
-      const message: MessageType.PartialImage = {
-        height: response.height,
-        imageName: response.filename ?? fileName ?? '🖼',
-        size: response.size,
-        uri,
-        width: response.width,
+        quality: 0.7,
+      },
+      async (response) => {
+        if (response.uri) {
+          setAttachmentUploading(true)
+          const fileName = response.uri.split('/').pop()
+          const reference = storage().ref(fileName)
+          await reference.putFile(response.uri)
+          const uri = await reference.getDownloadURL()
+          const message: MessageType.PartialImage = {
+            height: response.height,
+            imageName: response.fileName ?? fileName ?? '🖼',
+            size: response.fileSize ?? 0,
+            uri,
+            width: response.width,
+          }
+          sendMessage(message)
+          setAttachmentUploading(false)
+        }
       }
-      sendMessage(message)
-      setAttachmentUploading(false)
-    } catch {
-      setAttachmentUploading(false)
-    }
+    )
   }
 
   const handlePreviewDataFetched = ({
