@@ -24,16 +24,16 @@ export const createGroupRoom = async ({
     .collection('rooms')
     .add({
       imageUrl,
-      isGroup: true,
       name,
+      type: 'group',
       userIds: roomUsers.map((u) => u.id),
     })
 
   return {
     id: room.id,
     imageUrl,
-    isGroup: true,
     name,
+    type: 'group',
     users: roomUsers,
   } as Room
 }
@@ -53,7 +53,7 @@ export const createRoom = async ({
   const rooms = await processRoomsQuery({ firebaseUser, query })
 
   const existingRoom = rooms.find((room) => {
-    if (room.isGroup) return false
+    if (room.type === 'group') return false
 
     const userIds = room.users.map((u) => u.id)
     return userIds.includes(firebaseUser.uid) && userIds.includes(otherUser.id)
@@ -71,14 +71,14 @@ export const createRoom = async ({
     .collection('rooms')
     .add({
       imageUrl: undefined,
-      isGroup: false,
       name: undefined,
+      type: 'direct',
       userIds: users.map((u) => u.id),
     })
 
   return {
     id: room.id,
-    isGroup: false,
+    type: 'direct',
     users,
   } as Room
 }
@@ -106,12 +106,12 @@ export const processRoomsQuery = async ({
 }) => {
   const promises = query.docs.map(async (doc) => {
     let imageUrl = (doc.get('imageUrl') as string | null) ?? undefined
-    const isGroup = doc.get('isGroup') as boolean
     let name = (doc.get('name') as string | null) ?? undefined
+    const type = doc.get('type') as Room['type']
     const userIds = doc.get('userIds') as string[]
     const users = await Promise.all(userIds.map((userId) => fetchUser(userId)))
 
-    if (!isGroup) {
+    if (type === 'direct') {
       const otherUser = users.find((u) => u.id !== firebaseUser.uid)
 
       if (otherUser) {
@@ -123,8 +123,8 @@ export const processRoomsQuery = async ({
     const room: Room = {
       id: doc.id,
       imageUrl,
-      isGroup,
       name,
+      type,
       users,
     }
 

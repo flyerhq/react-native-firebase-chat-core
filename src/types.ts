@@ -5,7 +5,7 @@ export namespace MessageType {
   interface Base {
     authorId: string
     id: string
-    status?: 'error' | 'read' | 'sending' | 'sent'
+    status?: 'delivered' | 'error' | 'read' | 'sending'
     timestamp?: number
     type: 'file' | 'image' | 'text'
   }
@@ -59,8 +59,8 @@ export interface PreviewDataImage {
 export interface Room {
   id: string
   imageUrl?: string
-  isGroup: boolean
   name?: string
+  type: 'direct' | 'group'
   users: User[]
 }
 
