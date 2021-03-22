@@ -1,4 +1,4 @@
-package chat.flyer
+package com.example
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

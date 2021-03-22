@@ -22,7 +22,9 @@ interface Props {
 const LoginScreen = ({ navigation }: Props) => {
   const passwordInput = useRef<TextInput>(null)
   const [email, setEmail] = useState(
-    Platform.OS === 'ios' ? 'dexter.crona@gmail.com' : 'ofelia84@hotmail.com'
+    Platform.OS === 'ios'
+      ? 'martine.oberbrunner@erling.com'
+      : 'rhett.sipes@landen.name'
   )
   const [loggingIn, setLoggingIn] = useState(false)
   const [password, setPassword] = useState('Qawsed1-')

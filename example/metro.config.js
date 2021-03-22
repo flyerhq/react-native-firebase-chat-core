@@ -6,7 +6,7 @@
  */
 
 const path = require('path')
-const blacklist = require('metro-config/src/defaults/blacklist')
+const exclusionList = require('metro-config/src/defaults/exclusionList')
 
 const moduleRoot = path.resolve(__dirname, '..')
 
@@ -29,7 +29,7 @@ module.exports = {
         'node_modules/@react-native-firebase/firestore'
       ),
     },
-    blacklistRE: blacklist([
+    blockList: exclusionList([
       new RegExp(`${moduleRoot}/node_modules/react/.*`),
       new RegExp(`${moduleRoot}/node_modules/react-native/.*`),
       new RegExp(`${moduleRoot}/node_modules/@react-native-firebase/app/.*`),
@@ -43,7 +43,7 @@ module.exports = {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: false,
+        inlineRequires: true,
       },
     }),
   },

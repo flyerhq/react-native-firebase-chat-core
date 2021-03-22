@@ -1,4 +1,4 @@
-package chat.flyer
+package com.example
 
 import android.content.Context
 import com.facebook.flipper.android.AndroidFlipperClient
