@@ -1,7 +1,6 @@
 import {
-  createRoom,
-  useFirebaseUser,
   User,
+  useRooms,
   useUsers,
 } from '@flyerhq/react-native-firebase-chat-core'
 import {
@@ -30,8 +29,8 @@ interface Props {
 }
 
 const UsersScreen = ({ navigation }: Props) => {
+  const { createRoom } = useRooms()
   const { users } = useUsers()
-  const { firebaseUser } = useFirebaseUser()
 
   useLayoutEffect(() => {
     Platform.OS === 'ios' &&
@@ -41,16 +40,16 @@ const UsersScreen = ({ navigation }: Props) => {
   })
 
   const handlePress = async (otherUser: User) => {
-    if (!firebaseUser) return
+    const room = await createRoom(otherUser)
 
-    const room = await createRoom({ firebaseUser, otherUser })
-
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'Chat',
-        params: { roomId: room.id },
-      })
-    )
+    if (room) {
+      navigation.dispatch(
+        CommonActions.navigate({
+          name: 'Chat',
+          params: { roomId: room.id },
+        })
+      )
+    }
   }
 
   const renderItem = ({ item }: { item: User }) => (
