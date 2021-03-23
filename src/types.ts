@@ -66,7 +66,7 @@ export interface Room {
 
 export interface User {
   avatarUrl?: string
-  firstName: string
+  firstName?: string
   id: string
-  lastName: string
+  lastName?: string
 }
