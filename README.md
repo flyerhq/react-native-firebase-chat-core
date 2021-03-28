@@ -1,3 +1,11 @@
+<br>
+
+<p align="center">
+  <a href="https://flyer.chat">
+    <img src="https://flyer.chat/assets/logo-dark.svg" width="288px" alt="Flyer Chat Logo" />
+  </a>
+</p>
+
 <h1 align="center">React Native Firebase Chat Core</h1>
 
 <p align="center">
@@ -26,7 +34,7 @@ Flyer Chat is a platform for creating in-app chat experiences using React Native
 
 * **Chat UI agnostic**. You can choose the chat UI you prefer. But if you don't have one, we provide our own free and open-source [React Native Chat UI](https://github.com/flyerhq/react-native-chat-ui), which can be used to create a working chat in minutes.
 
-* **Easy to use**. Returns streams of data for messages, rooms and users. [Firebase Security Rules](https://firebase.google.com/docs/rules) control access to the data. Check our [documentation](https://flyer.chat) for the info.
+* **Easy to use**. Returns streams of data for messages, rooms and users. [Firebase Security Rules](https://firebase.google.com/docs/rules) control access to the data. Check our [documentation](https://docs.flyer.chat/react-native/firebase/firebase-overview) for the info.
 
 ## Getting Started
 
@@ -34,12 +42,12 @@ Flyer Chat is a platform for creating in-app chat experiences using React Native
 
 `React Native >=0.60.0`, [Firebase](https://firebase.google.com) project.
 
-Read our [documentation](https://flyer.chat) or see the [example](https://github.com/flyerhq/react-native-firebase-chat-core/tree/main/example) project. To run the example project you need to install dependencies (`yarn` in the root folder and `yarn` and `npx pod-install` in the `example` folder) and have your own [Firebase](https://firebase.google.com) project. Depending on the platform you want to:
+Read our [documentation](https://docs.flyer.chat/react-native/firebase/firebase-overview) or see the [example](https://github.com/flyerhq/react-native-firebase-chat-core/tree/main/example) project. To run the example project you need to install dependencies (`yarn` in the root folder and `yarn` and `npx pod-install` in the `example` folder) and have your own [Firebase](https://firebase.google.com) project. Depending on the platform you want to:
 
 1. Create an iOS app with a bundle ID `com.example` (*only required for the example project, you can use anything for your app*) in [Firebase console](https://console.firebase.google.com) of your project and download generated `GoogleService-Info.plist`. Put it in the `example/ios/example` folder. You don't need to open Xcode to do it, it will expect this file in this folder.
 2. Create an Android app with package name `com.example` (*only required for the example project, you can use anything for your app*) in [Firebase console](https://console.firebase.google.com) of your project and download generated `google-services.json`. Put it in the `example/android/app` folder.
 
-After all of this is done you will need to register a couple of users and the example app will automatically suggest email and password on the register screen, default password is `Qawsed1-`. To set up [Firebase Security Rules](https://firebase.google.com/docs/rules) so users can see only the data they should see, continue with our [documentation](https://flyer.chat).
+After all of this is done you will need to register a couple of users and the example app will automatically suggest email and password on the register screen, default password is `Qawsed1-`. To set up [Firebase Security Rules](https://firebase.google.com/docs/rules) so users can see only the data they should see, continue with our [documentation](https://docs.flyer.chat/react-native/firebase/firebase-rules).
 
 ## Contributing
 
