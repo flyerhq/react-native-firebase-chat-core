@@ -781,13 +781,13 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-android-uri-path/2.0.1/cf45b9cdfefdebb7b4274da82fc9549eb1e2b080bcd0f8833418eaefacdd5fef#320874352bce85c0fd6611bf7c6298237096e1a9"
   integrity sha512-NFgy49+jpR+D+adxhUcbC1ECg8GYGgd5JzduVa+U5jx91DnJB4lFF1Qufiq/lWVcIyBwOF8oPqbFaetrGFDnKA==
 
-"@flyerhq/react-native-chat-ui@^0.8.0":
-  version "0.8.0"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-chat-ui/0.8.0/090ad745fd04bdff06846efc3feed092b4a589619977a61d534467473b7683e0#f14885f5567dfe7bcdd992ee6207c7ef753bfa9a"
-  integrity sha512-BqXMkmE5LXDDeqyOX4Sm7u01dh3pZ1I0dARh4jXchkQdNuj0QaD6HX1SisgEGK+3PMvI3b/li8cyvF58KeYW0g==
+"@flyerhq/react-native-chat-ui@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@flyerhq/react-native-chat-ui/-/react-native-chat-ui-1.0.0.tgz#91e4b198c67f7c04e24d9fd92e39e4ceb43c27f1"
+  integrity sha512-uy14+8p4JfmnermGIl/77bavbXHLQo77Lx/DqnUhTOsmZQ6SNNA7iFPa8Uph+OV3c38oCdJ2diTmuRMC4SASkg==
   dependencies:
     "@flyerhq/react-native-keyboard-accessory-view" "^2.1.1"
-    "@flyerhq/react-native-link-preview" "^1.1.0"
+    "@flyerhq/react-native-link-preview" "^1.2.0"
     dayjs "^1.10.4"
     react-native-image-viewing "^0.2.0"
     react-native-parsed-text "^0.0.22"
@@ -797,12 +797,12 @@
   resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-keyboard-accessory-view/2.1.1/abba0337fb1f3499886d0b2cc8650d29fab93b47a3bd21f2d1b0845afbd6fb0a#3223f1884eb87b9d1f2db80bc1006de8112035c9"
   integrity sha512-WjbMYKLe+iS0+KaYJgT5jyjZfoOKUl+mTcy/rLIdH0LGN1OwinQCrT7r+hge7Q2INOkCgnwWedmAZtIpk7idtQ==
 
-"@flyerhq/react-native-link-preview@^1.1.0":
-  version "1.1.0"
-  resolved "https://npm.pkg.github.com/download/@flyerhq/react-native-link-preview/1.1.0/868abf21426052c31c991d61352c97acf1f2bc87b6bffdf85c295d7b6f7c416a#2e486caf4393d97f3a7a801216c41222ec01c741"
-  integrity sha512-FrZzTRo8TjG30mmyelMPTGvR/3SqrToEejb4KztPzNdKYLFUdxyHasGWKF9VKtb/iJE2J803s1D9NBssHuzOjg==
+"@flyerhq/react-native-link-preview@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@flyerhq/react-native-link-preview/-/react-native-link-preview-1.2.0.tgz#f80f1a2d55f6dce1a00d6960fcc64edd9cb53b98"
+  integrity sha512-HlVCNJGhHY34z+//FPdU7KAaR/P7ROpN6VDQe9/SRtDZb2yPYFGvspRJRopgGO+bSwH6G8NWUPrszGgUG+CycQ==
   dependencies:
-    html-entities "^2.1.0"
+    html-entities "^2.1.1"
 
 "@hapi/hoek@^9.0.0":
   version "9.1.1"
@@ -3425,10 +3425,10 @@ html-encoding-sniffer@^2.0.1:
   dependencies:
     whatwg-encoding "^1.0.5"
 
-html-entities@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.1.1.tgz#faa5fc521e2d18499627835d22be3554c202208f"
-  integrity sha512-HjNLgm9Ba8zKd6NDMkXa0mMPn3eDUxOUnEIm/qy2Rm6rnqRHgI9DpMYIv1Fndu8haUmfMQHNYNrlNKmdU8GMnQ==
+html-entities@^2.1.1:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.3.0.tgz#83474887115f12d33a7b85f6573c95223c2940a4"
+  integrity sha512-/XzLX7A79umjBdw7yYw99bk20uj+L1hQINB029One2OCIqtHj0o5F+XMRam1pveHF4pEYZyr8RSLYWdhguHrwg==
 
 html-escaper@^2.0.0:
   version "2.0.2"

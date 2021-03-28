@@ -13,8 +13,17 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/@flyerhq/react-native-firebase-chat-core">
+    <img alt="NPM" src="https://img.shields.io/npm/v/@flyerhq/react-native-firebase-chat-core" />
+  </a>
   <a href="https://github.com/flyerhq/react-native-firebase-chat-core/actions?query=workflow%3Abuild">
     <img alt="Build Status" src="https://github.com/flyerhq/react-native-firebase-chat-core/workflows/build/badge.svg" />
+  </a>
+  <a href="https://codeclimate.com/github/flyerhq/react-native-firebase-chat-core/maintainability">
+    <img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/73f70df60ed1212e64cf/maintainability" />
+  </a>
+  <a href="https://github.com/plantain-00/type-coverage">
+    <img alt="Type Coverage" src="https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&suffix=%&query=$.typeCoverage.is&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fflyerhq%2Freact-native-firebase-chat-core%2Fmain%2Fpackage.json" />
   </a>
 </p>
 

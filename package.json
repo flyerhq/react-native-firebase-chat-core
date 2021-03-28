@@ -1,8 +1,8 @@
 {
   "name": "@flyerhq/react-native-firebase-chat-core",
-  "version": "0.0.3",
-  "description": "React Native Firebase Chat Core",
-  "homepage": "https://github.com/flyerhq/react-native-firebase-chat-core#readme",
+  "version": "1.0.0",
+  "description": "Actively maintained, community-driven Firebase BaaS for chat applications with an optional chat UI.",
+  "homepage": "https://flyer.chat",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Oleksandr Demchenko <alexdemchenko@yahoo.com>",
@@ -11,9 +11,20 @@
     "Volodymyr Smolianinov <voidozzer@gmail.com>"
   ],
   "license": "Apache-2.0",
+  "keywords": [
+    "chat",
+    "firebase",
+    "react-native",
+    "ios",
+    "android",
+    "typescript"
+  ],
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
