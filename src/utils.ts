@@ -28,6 +28,8 @@ export const processRoomsQuery = async ({
 }) => {
   const promises = query.docs.map(async (doc) => {
     let imageUrl = (doc.get('imageUrl') as string | null) ?? undefined
+    let metadata =
+      (doc.get('metadata') as Record<string, any> | null) ?? undefined
     let name = (doc.get('name') as string | null) ?? undefined
     const type = doc.get('type') as Room['type']
     const userIds = doc.get('userIds') as string[]
@@ -45,6 +47,7 @@ export const processRoomsQuery = async ({
     const room: Room = {
       id: doc.id,
       imageUrl,
+      metadata,
       name,
       type,
       users,

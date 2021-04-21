@@ -59,6 +59,7 @@ export interface PreviewDataImage {
 export interface Room {
   id: string
   imageUrl?: string
+  metadata?: Record<string, any>
   name?: string
   type: 'direct' | 'group'
   users: User[]
