@@ -27,10 +27,12 @@ export const useRooms = () => {
 
   const createGroupRoom = async ({
     imageUrl,
+    metadata,
     name,
     users,
   }: {
     imageUrl?: string
+    metadata?: Record<string, any>
     name: string
     users: User[]
   }) => {
@@ -44,6 +46,7 @@ export const useRooms = () => {
       .collection('rooms')
       .add({
         imageUrl,
+        metadata,
         name,
         type: 'group',
         userIds: roomUsers.map((u) => u.id),
@@ -52,13 +55,17 @@ export const useRooms = () => {
     return {
       id: room.id,
       imageUrl,
+      metadata,
       name,
       type: 'group',
       users: roomUsers,
     } as Room
   }
 
-  const createRoom = async (otherUser: User) => {
+  const createRoom = async (
+    otherUser: User,
+    metadata?: Record<string, any>
+  ) => {
     if (!firebaseUser) return
 
     const query = await firestore()
@@ -89,6 +96,7 @@ export const useRooms = () => {
       .collection('rooms')
       .add({
         imageUrl: undefined,
+        metadata,
         name: undefined,
         type: 'direct',
         userIds: users.map((u) => u.id),
@@ -96,6 +104,7 @@ export const useRooms = () => {
 
     return {
       id: room.id,
+      metadata,
       type: 'direct',
       users,
     } as Room

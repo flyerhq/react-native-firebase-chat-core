@@ -1,6 +1,6 @@
 {
   "name": "@flyerhq/react-native-firebase-chat-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Actively maintained, community-driven Firebase BaaS for chat applications with an optional chat UI.",
   "homepage": "https://flyer.chat",
   "main": "lib/index.js",
