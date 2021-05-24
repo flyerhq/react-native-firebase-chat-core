@@ -54,3 +54,4 @@ yarn android
 18. Revert `firebase.json`
 19. Check the difference in `android/gradle.properties` and combine all
 20. Check the difference in `MainActivity.kt` and combine all
+21. Check the difference in `AppDelegate.swift` and combine all
