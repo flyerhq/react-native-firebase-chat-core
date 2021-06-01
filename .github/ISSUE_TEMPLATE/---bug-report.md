@@ -15,7 +15,7 @@ Hello 👋 Thank you for submitting an issue!
 🚨 Before you start, please make sure your issue is understandable and reproducible. To make your issue readable make sure you use valid Markdown syntax. https://guides.github.com/features/mastering-markdown/
 
 🚨 Please ensure you have also read and understand the contributing guide.
-https://github.com/flyerhq/react-native-chat-ui/blob/main/CONTRIBUTING.md
+https://github.com/flyerhq/react-native-firebase-chat-core/blob/main/CONTRIBUTING.md
 
 💪 Ready? Let's go then!
 -->
@@ -51,11 +51,11 @@ If applicable, add code samples to help explain your problem.
 
 # Environment info
 
-Please specify the react, react-native, react-native-chat-ui versions.
+Please specify the react, react-native, react-native-firebase-chat-core versions.
 
 react: ...
 react-native: ...
-react-native-chat-ui: ...
+react-native-firebase-chat-core: ...
 
 `npx react-native info` output 👇
 
