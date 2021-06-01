@@ -90,8 +90,10 @@ const ChatScreen = ({ route }: Props) => {
         mediaType: 'photo',
         quality: 0.7,
       },
-      async (response) => {
-        if (response.uri) {
+      async ({ assets }) => {
+        const response = assets?.[0]
+
+        if (response?.base64 && response?.uri) {
           setAttachmentUploading(true)
           const fileName = response.uri.split('/').pop()
           const reference = storage().ref(fileName)
