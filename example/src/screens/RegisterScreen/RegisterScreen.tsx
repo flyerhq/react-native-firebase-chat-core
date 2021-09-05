@@ -1,7 +1,7 @@
 import { createUserInFirestore } from '@flyerhq/react-native-firebase-chat-core'
 import auth from '@react-native-firebase/auth'
 import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import faker from 'faker'
 import React, { useRef, useState } from 'react'
 import { Alert, Button, ScrollView, StyleSheet, TextInput } from 'react-native'
@@ -9,8 +9,8 @@ import { AuthStackParamList, RootStackParamList } from 'src/types'
 
 interface Props {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, 'Auth'>,
-    StackNavigationProp<AuthStackParamList>
+    NativeStackNavigationProp<RootStackParamList, 'Auth'>,
+    NativeStackNavigationProp<AuthStackParamList>
   >
 }
 
@@ -32,16 +32,16 @@ const RegisterScreen = ({ navigation }: Props) => {
         password
       )
       await createUserInFirestore({
-        avatarUrl: `https://i.pravatar.cc/300?u=${email}`,
         firstName,
         id: credential.user.uid,
+        imageUrl: `https://i.pravatar.cc/300?u=${email}`,
         lastName,
       })
       setRegistering(false)
       navigation.navigate('Main')
     } catch (e) {
       setRegistering(false)
-      Alert.alert('Error', e.message, [{ text: 'OK' }])
+      Alert.alert('Error', (e as Error).message, [{ text: 'OK' }])
     }
   }
 

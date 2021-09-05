@@ -1,18 +1,36 @@
+import { ImageURISource } from 'react-native'
+
 export namespace MessageType {
-  export type Any = File | Image | Text
-  export type PartialAny = PartialFile | PartialImage | PartialText
+  export type Any = Custom | File | Image | Text | Unsupported
+  export type PartialAny =
+    | PartialCustom
+    | PartialFile
+    | PartialImage
+    | PartialText
 
   interface Base {
-    authorId: string
+    author: User
+    createdAt?: number
     id: string
-    status?: 'delivered' | 'error' | 'read' | 'sending'
-    timestamp?: number
-    type: 'file' | 'image' | 'text'
+    metadata?: Record<string, any>
+    roomId?: string
+    status?: 'delivered' | 'error' | 'seen' | 'sending' | 'sent'
+    type: 'custom' | 'file' | 'image' | 'text' | 'unsupported'
+    updatedAt?: number
+  }
+
+  export interface PartialCustom extends Base {
+    metadata?: Record<string, any>
+  }
+
+  export interface Custom extends Base, PartialCustom {
+    type: 'custom'
   }
 
   export interface PartialFile {
-    fileName: string
+    metadata?: Record<string, any>
     mimeType?: string
+    name: string
     size: number
     uri: string
   }
@@ -23,7 +41,8 @@ export namespace MessageType {
 
   export interface PartialImage {
     height?: number
-    imageName: string
+    metadata?: Record<string, any>
+    name: string
     size: number
     uri: string
     width?: number
@@ -34,12 +53,17 @@ export namespace MessageType {
   }
 
   export interface PartialText {
+    metadata?: Record<string, any>
     previewData?: PreviewData
     text: string
   }
 
   export interface Text extends Base, PartialText {
     type: 'text'
+  }
+
+  export interface Unsupported extends Base {
+    type: 'unsupported'
   }
 }
 
@@ -57,17 +81,25 @@ export interface PreviewDataImage {
 }
 
 export interface Room {
+  createdAt?: number
   id: string
-  imageUrl?: string
+  imageUrl?: ImageURISource['uri']
+  lastMessages?: MessageType.Any[]
   metadata?: Record<string, any>
   name?: string
-  type: 'direct' | 'group'
+  type: 'channel' | 'direct' | 'group' | 'unsupported'
+  updatedAt?: number
   users: User[]
 }
 
 export interface User {
-  avatarUrl?: string
+  createdAt?: number
   firstName?: string
   id: string
+  imageUrl?: ImageURISource['uri']
   lastName?: string
+  lastSeen?: number
+  metadata?: Record<string, any>
+  role?: 'admin' | 'agent' | 'moderator' | 'user'
+  updatedAt?: number
 }

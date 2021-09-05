@@ -7,10 +7,14 @@ import { Room, User } from './types'
 
 export const createUserInFirestore = async (user: User) => {
   await firestore().collection('users').doc(user.id).set({
-    avatarUrl: user.avatarUrl,
     firstName: user.firstName,
+    imageUrl: user.imageUrl,
     lastName: user.lastName,
   })
+}
+
+export const deleteUserFromFirestore = async (userId: string) => {
+  await firestore().collection('users').doc(userId).delete()
 }
 
 export const fetchUser = async (userId: string) => {
@@ -39,8 +43,8 @@ export const processRoomsQuery = async ({
       const otherUser = users.find((u) => u.id !== firebaseUser.uid)
 
       if (otherUser) {
-        imageUrl = otherUser.avatarUrl
-        name = `${otherUser.firstName} ${otherUser.lastName}`
+        imageUrl = otherUser.imageUrl
+        name = `${otherUser.firstName ?? ''} ${otherUser.lastName ?? ''}`.trim()
       }
     }
 
@@ -62,14 +66,14 @@ export const processRoomsQuery = async ({
 export const processUserDocument = (
   doc: FirebaseFirestoreTypes.DocumentSnapshot
 ) => {
-  const avatarUrl = (doc.get('avatarUrl') as string | null) ?? undefined
+  const imageUrl = (doc.get('imageUrl') as string | null) ?? undefined
   const firstName = doc.get('firstName') as string
   const lastName = doc.get('lastName') as string
 
   const user: User = {
-    avatarUrl,
     firstName,
     id: doc.id,
+    imageUrl,
     lastName,
   }
 

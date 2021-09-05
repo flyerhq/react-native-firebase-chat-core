@@ -1,3 +1,4 @@
+import { COLORS, getUserAvatarNameColor } from '@flyerhq/react-native-chat-ui'
 import {
   Room,
   useFirebaseUser,
@@ -5,13 +6,14 @@ import {
 } from '@flyerhq/react-native-firebase-chat-core'
 import auth from '@react-native-firebase/auth'
 import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useLayoutEffect } from 'react'
 import {
   Alert,
   Button,
+  ColorValue,
   FlatList,
-  Image,
+  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -21,8 +23,8 @@ import { MainStackParamList, RootStackParamList } from 'src/types'
 
 interface Props {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, 'Main'>,
-    StackNavigationProp<MainStackParamList>
+    NativeStackNavigationProp<RootStackParamList, 'Main'>,
+    NativeStackNavigationProp<MainStackParamList>
   >
 }
 
@@ -49,8 +51,39 @@ const RoomsScreen = ({ navigation }: Props) => {
     try {
       await auth().signOut()
     } catch (e) {
-      Alert.alert('Error', e.message, [{ text: 'OK' }])
+      Alert.alert('Error', (e as Error).message, [{ text: 'OK' }])
     }
+  }
+
+  const renderAvatar = (item: Room) => {
+    let color: ColorValue | undefined
+
+    if (item.type === 'direct') {
+      const otherUser = item.users.find((u) => u.id !== firebaseUser?.uid)
+
+      if (otherUser) {
+        color = getUserAvatarNameColor(otherUser, COLORS)
+      }
+    }
+
+    const name = item.name ?? ''
+
+    return (
+      <ImageBackground
+        source={{ uri: item.imageUrl }}
+        style={[
+          styles.roomImage,
+          // eslint-disable-next-line react-native/no-inline-styles
+          { backgroundColor: item.imageUrl ? undefined : color },
+        ]}
+      >
+        {!item.imageUrl ? (
+          <Text style={styles.userInitial}>
+            {name ? name.charAt(0).toUpperCase() : ''}
+          </Text>
+        ) : null}
+      </ImageBackground>
+    )
   }
 
   const renderItem = ({ item }: { item: Room }) => (
@@ -58,8 +91,8 @@ const RoomsScreen = ({ navigation }: Props) => {
       onPress={() => navigation.navigate('Chat', { roomId: item.id })}
     >
       <View style={styles.roomContainer}>
-        <Image source={{ uri: item.imageUrl }} style={styles.roomImage} />
-        <Text>{item.name}</Text>
+        {renderAvatar(item)}
+        <Text>{item.name ?? ''}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -110,6 +143,9 @@ const styles = StyleSheet.create({
     height: 40,
     marginRight: 16,
     width: 40,
+  },
+  userInitial: {
+    color: 'white',
   },
 })
 

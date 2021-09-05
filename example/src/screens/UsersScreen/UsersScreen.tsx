@@ -1,4 +1,9 @@
 import {
+  COLORS,
+  getUserAvatarNameColor,
+  getUserName,
+} from '@flyerhq/react-native-chat-ui'
+import {
   User,
   useRooms,
   useUsers,
@@ -7,12 +12,12 @@ import {
   CommonActions,
   CompositeNavigationProp,
 } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useLayoutEffect } from 'react'
 import {
   Button,
   FlatList,
-  Image,
+  ImageBackground,
   Platform,
   StyleSheet,
   Text,
@@ -23,8 +28,8 @@ import { RootStackParamList, UsersStackParamList } from 'src/types'
 
 interface Props {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, 'UsersStack'>,
-    StackNavigationProp<UsersStackParamList>
+    NativeStackNavigationProp<RootStackParamList, 'UsersStack'>,
+    NativeStackNavigationProp<UsersStackParamList>
   >
 }
 
@@ -52,13 +57,33 @@ const UsersScreen = ({ navigation }: Props) => {
     }
   }
 
+  const renderAvatar = (item: User) => {
+    const color = getUserAvatarNameColor(item, COLORS)
+    const name = getUserName(item)
+
+    return (
+      <ImageBackground
+        source={{ uri: item.imageUrl }}
+        style={[
+          styles.userImage,
+          // eslint-disable-next-line react-native/no-inline-styles
+          { backgroundColor: item.imageUrl ? undefined : color },
+        ]}
+      >
+        {!item.imageUrl ? (
+          <Text style={styles.userInitial}>
+            {name ? name.charAt(0).toUpperCase() : ''}
+          </Text>
+        ) : null}
+      </ImageBackground>
+    )
+  }
+
   const renderItem = ({ item }: { item: User }) => (
     <TouchableOpacity onPress={() => handlePress(item)}>
       <View style={styles.userContainer}>
-        <Image source={{ uri: item.avatarUrl }} style={styles.userImage} />
-        <Text>
-          {item.firstName} {item.lastName}
-        </Text>
+        {renderAvatar(item)}
+        <Text>{getUserName(item)}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -99,6 +124,9 @@ const styles = StyleSheet.create({
     height: 40,
     marginRight: 16,
     width: 40,
+  },
+  userInitial: {
+    color: 'white',
   },
 })
 

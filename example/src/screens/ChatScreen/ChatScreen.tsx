@@ -47,29 +47,19 @@ const ChatScreen = ({ route }: Props) => {
     )
   }
 
-  const handleFilePress = async (file: MessageType.File) => {
-    try {
-      const uri = utils.FilePath.DOCUMENT_DIRECTORY + '/' + file.fileName
-      const reference = storage().ref(file.fileName)
-      await reference.writeToFile(uri)
-      const path = Platform.OS === 'android' ? uri.replace('file://', '') : uri
-      await FileViewer.open(path, { showOpenWithDialog: true })
-    } catch {}
-  }
-
   const handleFileSelection = async () => {
     try {
-      const response = await DocumentPicker.pick({
+      const response = await DocumentPicker.pickSingle({
         type: [DocumentPicker.types.allFiles],
       })
       setAttachmentUploading(true)
-      const fileName = response.name
-      const reference = storage().ref(fileName)
+      const name = response.name
+      const reference = storage().ref(name)
       await reference.putFile(getPath(response.uri))
       const uri = await reference.getDownloadURL()
       const message: MessageType.PartialFile = {
-        fileName,
         mimeType: response.type,
+        name,
         size: response.size,
         uri,
       }
@@ -77,9 +67,6 @@ const ChatScreen = ({ route }: Props) => {
       setAttachmentUploading(false)
     } catch (err) {
       setAttachmentUploading(false)
-      if (!DocumentPicker.isCancel(err)) {
-        // Handle user cancel
-      }
     }
   }
 
@@ -95,13 +82,13 @@ const ChatScreen = ({ route }: Props) => {
 
         if (response?.base64 && response?.uri) {
           setAttachmentUploading(true)
-          const fileName = response.uri.split('/').pop()
-          const reference = storage().ref(fileName)
+          const name = response.uri?.split('/').pop()
+          const reference = storage().ref(name)
           await reference.putFile(response.uri)
           const uri = await reference.getDownloadURL()
           const message: MessageType.PartialImage = {
             height: response.height,
-            imageName: response.fileName ?? fileName ?? '🖼',
+            name: response.fileName ?? name ?? '🖼',
             size: response.fileSize ?? 0,
             uri,
             width: response.width,
@@ -111,6 +98,19 @@ const ChatScreen = ({ route }: Props) => {
         }
       }
     )
+  }
+
+  const handleMessagePress = async (message: MessageType.Any) => {
+    if (message.type === 'file') {
+      try {
+        const uri = utils.FilePath.DOCUMENT_DIRECTORY + '/' + message.name
+        const reference = storage().ref(message.name)
+        await reference.writeToFile(uri)
+        const path =
+          Platform.OS === 'android' ? uri.replace('file://', '') : uri
+        await FileViewer.open(path, { showOpenWithDialog: true })
+      } catch {}
+    }
   }
 
   const handlePreviewDataFetched = ({
@@ -129,7 +129,7 @@ const ChatScreen = ({ route }: Props) => {
       isAttachmentUploading={isAttachmentUploading}
       messages={messages}
       onAttachmentPress={handleAttachmentPress}
-      onFilePress={handleFilePress}
+      onMessagePress={handleMessagePress}
       onPreviewDataFetched={handlePreviewDataFetched}
       onSendPress={sendMessage}
       user={{ id: firebaseUser?.uid ?? '' }}
