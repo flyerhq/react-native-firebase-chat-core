@@ -51,7 +51,7 @@ const UsersScreen = ({ navigation }: Props) => {
       navigation.dispatch(
         CommonActions.navigate({
           name: 'Chat',
-          params: { roomId: room.id },
+          params: { room },
         })
       )
     }
@@ -66,7 +66,6 @@ const UsersScreen = ({ navigation }: Props) => {
         source={{ uri: item.imageUrl }}
         style={[
           styles.userImage,
-          // eslint-disable-next-line react-native/no-inline-styles
           { backgroundColor: item.imageUrl ? undefined : color },
         ]}
       >
@@ -120,9 +119,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   userImage: {
+    alignItems: 'center',
     borderRadius: 20,
     height: 40,
+    justifyContent: 'center',
     marginRight: 16,
+    overflow: 'hidden',
     width: 40,
   },
   userInitial: {

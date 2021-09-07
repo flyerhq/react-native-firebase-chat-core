@@ -3,7 +3,6 @@ import * as React from 'react'
 
 import { User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
-import { processUserDocument } from './utils'
 
 export const useUsers = () => {
   const [users, setUsers] = React.useState<User[]>([])
@@ -23,7 +22,20 @@ export const useUsers = () => {
         query.forEach((doc) => {
           if (firebaseUser.uid === doc.id) return
 
-          newUsers.push(processUserDocument(doc))
+          const data = doc.data()!
+
+          const user: User = {
+            createdAt: data.createdAt?.toMillis() ?? undefined,
+            firstName: data.firstName ?? undefined,
+            id: doc.id,
+            imageUrl: data.imageUrl ?? undefined,
+            lastName: data.lastName ?? undefined,
+            lastSeen: data.lastSeen?.toMillis() ?? undefined,
+            metadata: data.metadata ?? undefined,
+            updatedAt: data.updatedAt?.toMillis() ?? undefined,
+          }
+
+          newUsers.push(user)
         })
 
         setUsers(newUsers)

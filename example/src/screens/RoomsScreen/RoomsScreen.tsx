@@ -73,7 +73,6 @@ const RoomsScreen = ({ navigation }: Props) => {
         source={{ uri: item.imageUrl }}
         style={[
           styles.roomImage,
-          // eslint-disable-next-line react-native/no-inline-styles
           { backgroundColor: item.imageUrl ? undefined : color },
         ]}
       >
@@ -88,7 +87,7 @@ const RoomsScreen = ({ navigation }: Props) => {
 
   const renderItem = ({ item }: { item: Room }) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Chat', { roomId: item.id })}
+      onPress={() => navigation.navigate('Chat', { room: item })}
     >
       <View style={styles.roomContainer}>
         {renderAvatar(item)}
@@ -139,9 +138,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   roomImage: {
+    alignItems: 'center',
     borderRadius: 20,
     height: 40,
+    justifyContent: 'center',
     marginRight: 16,
+    overflow: 'hidden',
     width: 40,
   },
   userInitial: {

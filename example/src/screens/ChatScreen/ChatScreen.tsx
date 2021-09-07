@@ -5,6 +5,7 @@ import {
   PreviewData,
   useFirebaseUser,
   useMessages,
+  useRoom,
 } from '@flyerhq/react-native-firebase-chat-core'
 import { utils } from '@react-native-firebase/app'
 import storage from '@react-native-firebase/storage'
@@ -22,9 +23,8 @@ interface Props {
 
 const ChatScreen = ({ route }: Props) => {
   const { firebaseUser } = useFirebaseUser()
-  const { messages, sendMessage, updateMessage } = useMessages(
-    route.params.roomId
-  )
+  const { room } = useRoom(route.params.room)
+  const { messages, sendMessage, updateMessage } = useMessages(room)
   const [isAttachmentUploading, setAttachmentUploading] = useState(false)
   const { showActionSheetWithOptions } = useActionSheet()
 
@@ -61,6 +61,7 @@ const ChatScreen = ({ route }: Props) => {
         mimeType: response.type,
         name,
         size: response.size,
+        type: 'file',
         uri,
       }
       sendMessage(message)
@@ -80,7 +81,7 @@ const ChatScreen = ({ route }: Props) => {
       async ({ assets }) => {
         const response = assets?.[0]
 
-        if (response?.base64 && response?.uri) {
+        if (response?.uri) {
           setAttachmentUploading(true)
           const name = response.uri?.split('/').pop()
           const reference = storage().ref(name)
@@ -90,6 +91,7 @@ const ChatScreen = ({ route }: Props) => {
             height: response.height,
             name: response.fileName ?? name ?? '🖼',
             size: response.fileSize ?? 0,
+            type: 'image',
             uri,
             width: response.width,
           }
@@ -126,6 +128,7 @@ const ChatScreen = ({ route }: Props) => {
 
   return (
     <Chat
+      enableAnimation
       isAttachmentUploading={isAttachmentUploading}
       messages={messages}
       onAttachmentPress={handleAttachmentPress}

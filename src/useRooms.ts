@@ -5,7 +5,7 @@ import { Room, User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 import { fetchUser, processRoomsQuery } from './utils'
 
-export const useRooms = () => {
+export const useRooms = (orderByUpdatedAt?: boolean) => {
   const [rooms, setRooms] = React.useState<Room[]>([])
   const { firebaseUser } = useFirebaseUser()
 
@@ -15,15 +15,21 @@ export const useRooms = () => {
       return
     }
 
-    return firestore()
-      .collection('rooms')
-      .where('userIds', 'array-contains', firebaseUser.uid)
-      .onSnapshot(async (query) => {
-        const newRooms = await processRoomsQuery({ firebaseUser, query })
+    const collection = orderByUpdatedAt
+      ? firestore()
+          .collection('rooms')
+          .where('userIds', 'array-contains', firebaseUser.uid)
+          .orderBy('updatedAt', 'desc')
+      : firestore()
+          .collection('rooms')
+          .where('userIds', 'array-contains', firebaseUser.uid)
 
-        setRooms(newRooms)
-      })
-  }, [firebaseUser])
+    return collection.onSnapshot(async (query) => {
+      const newRooms = await processRoomsQuery({ firebaseUser, query })
+
+      setRooms(newRooms)
+    })
+  }, [firebaseUser, orderByUpdatedAt])
 
   const createGroupRoom = async ({
     imageUrl,
@@ -45,11 +51,17 @@ export const useRooms = () => {
     const room = await firestore()
       .collection('rooms')
       .add({
+        createdAt: firestore.FieldValue.serverTimestamp(),
         imageUrl,
         metadata,
         name,
         type: 'group',
+        updatedAt: firestore.FieldValue.serverTimestamp(),
         userIds: roomUsers.map((u) => u.id),
+        userRoles: roomUsers.reduce(
+          (prev, curr) => ({ ...prev, [curr.id]: curr.role }),
+          {}
+        ),
       })
 
     return {
@@ -95,11 +107,14 @@ export const useRooms = () => {
     const room = await firestore()
       .collection('rooms')
       .add({
+        createdAt: firestore.FieldValue.serverTimestamp(),
         imageUrl: undefined,
         metadata,
         name: undefined,
         type: 'direct',
+        updatedAt: firestore.FieldValue.serverTimestamp(),
         userIds: users.map((u) => u.id),
+        userRoles: undefined,
       })
 
     return {

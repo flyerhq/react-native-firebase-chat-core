@@ -1,76 +1,77 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 
-import { MessageType } from './types'
+import { MessageType, Room } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 
-export const useMessages = (roomId: string) => {
+export const useMessages = (room: Room) => {
   const [messages, setMessages] = React.useState<MessageType.Any[]>([])
   const { firebaseUser } = useFirebaseUser()
 
   React.useEffect(() => {
     return firestore()
-      .collection(`rooms/${roomId}/messages`)
-      .orderBy('timestamp', 'desc')
+      .collection(`rooms/${room.id}/messages`)
+      .orderBy('createdAt', 'desc')
       .onSnapshot((query) => {
         const newMessages: MessageType.Any[] = []
 
         query.forEach((doc) => {
-          // Ignore timestamp types here, not provided by the Firebase library
+          // Ignore `authorId`, `createdAt` and `updatedAt` types here, not provided by the Firebase library
           // type-coverage:ignore-next-line
-          const { timestamp, ...rest } = doc.data()
+          const { authorId, createdAt, updatedAt, ...rest } = doc.data()
+
+          // type-coverage:ignore-next-line
+          const author = room.users.find((u) => u.id === authorId) ?? {
+            id: authorId as string,
+          }
 
           newMessages.push({
             ...rest,
+            author,
             // type-coverage:ignore-next-line
-            timestamp: timestamp
-              ? // type-coverage:ignore-next-line
-                Math.floor(timestamp.toMillis() / 1000)
-              : undefined,
+            createdAt: createdAt?.toMillis() ?? undefined,
             id: doc.id,
+            // type-coverage:ignore-next-line
+            updatedAt: updatedAt?.toMillis() ?? undefined,
           } as MessageType.Any)
         })
 
         setMessages(newMessages)
       })
-  }, [roomId])
+  }, [room.id, room.users])
 
   const sendMessage = async (message: MessageType.PartialAny) => {
     if (!firebaseUser) return
 
-    let type: 'file' | 'image' | 'text' | undefined
-
-    if (message.hasOwnProperty('text')) {
-      type = 'text'
-    } else if (message.hasOwnProperty('imageName')) {
-      type = 'image'
-    } else if (message.hasOwnProperty('fileName')) {
-      type = 'file'
-    }
-
     await firestore()
-      .collection(`rooms/${roomId}/messages`)
+      .collection(`rooms/${room.id}/messages`)
       .add({
         ...message,
         authorId: firebaseUser.uid,
-        timestamp: firestore.FieldValue.serverTimestamp(),
-        type,
+        createdAt: firestore.FieldValue.serverTimestamp(),
+        updatedAt: firestore.FieldValue.serverTimestamp(),
       })
   }
 
   const updateMessage = async (message: MessageType.Any) => {
-    if (!firebaseUser || message.authorId !== firebaseUser.uid) return
+    if (!firebaseUser || message.author.id !== firebaseUser.uid) return
 
-    const messageWithoutIdAndTimestamp: Partial<MessageType.Any> = {
+    const messageToSend: Partial<MessageType.Any> = {
       ...message,
     }
-    delete messageWithoutIdAndTimestamp.id
-    delete messageWithoutIdAndTimestamp.timestamp
+
+    delete messageToSend.author
+    delete messageToSend.createdAt
+    delete messageToSend.id
 
     await firestore()
-      .collection(`rooms/${roomId}/messages`)
+      .collection(`rooms/${room.id}/messages`)
       .doc(message.id)
-      .update({ ...messageWithoutIdAndTimestamp })
+      .update({
+        ...messageToSend,
+        authorId: message.author.id,
+        updatedAt: firestore.FieldValue.serverTimestamp(),
+      })
   }
 
   return { messages, sendMessage, updateMessage }
