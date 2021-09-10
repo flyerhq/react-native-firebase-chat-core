@@ -1,5 +1,6 @@
 package com.example
 
+import android.os.Bundle
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.ReactRootView
@@ -17,5 +18,9 @@ class MainActivity : ReactActivity() {
                 return RNGestureHandlerEnabledRootView(this@MainActivity)
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(null)
     }
 }

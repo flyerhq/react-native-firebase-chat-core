@@ -1,10 +1,12 @@
+import { Room } from '@flyerhq/react-native-firebase-chat-core'
+
 export type AuthStackParamList = {
   Login: undefined
   Register: undefined
 }
 
 export type MainStackParamList = {
-  Chat: { roomId: string }
+  Chat: { room: Room }
   Rooms: undefined
 }
 

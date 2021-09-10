@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth'
 import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import {
   Alert,
@@ -14,8 +14,8 @@ import { AuthStackParamList, RootStackParamList } from 'src/types'
 
 interface Props {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, 'Auth'>,
-    StackNavigationProp<AuthStackParamList>
+    NativeStackNavigationProp<RootStackParamList, 'Auth'>,
+    NativeStackNavigationProp<AuthStackParamList>
   >
 }
 
@@ -40,7 +40,7 @@ const LoginScreen = ({ navigation }: Props) => {
       navigation.navigate('Main')
     } catch (e) {
       setLoggingIn(false)
-      Alert.alert('Error', e.message, [{ text: 'OK' }])
+      Alert.alert('Error', (e as Error).message, [{ text: 'OK' }])
     }
   }
 

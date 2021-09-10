@@ -9,14 +9,14 @@ As mentioned in [How it works?](firebase-overview#how-it-works), you will need t
 import { createUserInFirestore } from '@flyerhq/react-native-firebase-chat-core'
 
 await createUserInFirestore({
-  avatarUrl: 'https://i.pravatar.cc/300',
   firstName: 'Alex',
   id: credential.user.uid, // UID from Firebase Authentication
+  imageUrl: 'https://i.pravatar.cc/300',
   lastName: 'Demchenko',
 })
 ```
 
-You can provide values like `avatarUrl`, `firstName` and `lastName` if you're planning to have a screen with all users available for chat. The `id` is the only required field and you **need to** use the `uid` you get from the Firebase Authentication after you register a user. If you don't use Firebase for authentication, you can register a user using your custom `JWT` token, then call `createUserInFirestore` as described above.
+You can provide values like `firstName`, `imageUrl` and `lastName` if you're planning to have a screen with all users available for chat. The `id` is the only required field and you **need to** use the `uid` you get from the Firebase Authentication after you register a user. If you don't use Firebase for authentication, you can register a user using your custom `JWT` token, then call `createUserInFirestore` as described above.
 
 Aside from registration, you will need to log users in when appropriate, using available methods from Firebase Authentication, including the custom `JWT` token.
 
@@ -73,7 +73,7 @@ export default UsersScreen
 
 ## Rooms
 
-To render user's rooms you use the `useRooms` hook. `Room` object will have name and image URL taken either from provided ones for the group or set to the other person's avatar URL and name. See [Security Rules](firebase-rules) for more info about rooms filtering. The returned list is dynamic and will change in real-time.
+To render user's rooms you use the `useRooms` hook. `Room` object will have name and image URL taken either from provided ones for the group or set to the other person's image URL and name. See [Security Rules](firebase-rules) for more info about rooms filtering. The returned list is dynamic and will change in real-time.
 
 ```ts
 import { useRooms } from '@flyerhq/react-native-firebase-chat-core'

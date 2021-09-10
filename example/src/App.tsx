@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { createNativeStackNavigator } from 'react-native-screens/native-stack'
 
 import {
   ChatScreen,
@@ -23,7 +23,7 @@ const UsersStack = createNativeStackNavigator<UsersStackParamList>()
 
 const AuthStackNavigator = () => {
   return (
-    <AuthStack.Navigator screenOptions={{ headerTopInsetEnabled: false }}>
+    <AuthStack.Navigator>
       <AuthStack.Screen name='Login' component={LoginScreen} />
       <AuthStack.Screen name='Register' component={RegisterScreen} />
     </AuthStack.Navigator>
@@ -32,10 +32,7 @@ const AuthStackNavigator = () => {
 
 const MainStackNavigator = () => {
   return (
-    <MainStack.Navigator
-      initialRouteName='Rooms'
-      screenOptions={{ headerTopInsetEnabled: false }}
-    >
+    <MainStack.Navigator initialRouteName='Rooms'>
       <MainStack.Screen name='Chat' component={ChatScreen} />
       <MainStack.Screen name='Rooms' component={RoomsScreen} />
     </MainStack.Navigator>
@@ -44,7 +41,7 @@ const MainStackNavigator = () => {
 
 const UsersStackNavigator = () => {
   return (
-    <UsersStack.Navigator screenOptions={{ headerTopInsetEnabled: false }}>
+    <UsersStack.Navigator>
       <UsersStack.Screen name='Users' component={UsersScreen} />
     </UsersStack.Navigator>
   )
@@ -60,13 +57,13 @@ const App = () => {
         <RootStack.Screen
           name='Auth'
           component={AuthStackNavigator}
-          options={{ stackPresentation: 'modal' }}
+          options={{ presentation: 'modal' }}
         />
         <RootStack.Screen name='Main' component={MainStackNavigator} />
         <RootStack.Screen
           name='UsersStack'
           component={UsersStackNavigator}
-          options={{ stackPresentation: 'modal' }}
+          options={{ presentation: 'modal' }}
         />
       </RootStack.Navigator>
     </NavigationContainer>

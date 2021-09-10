@@ -1,4 +1,9 @@
 import {
+  COLORS,
+  getUserAvatarNameColor,
+  getUserName,
+} from '@flyerhq/react-native-chat-ui'
+import {
   User,
   useRooms,
   useUsers,
@@ -7,12 +12,12 @@ import {
   CommonActions,
   CompositeNavigationProp,
 } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useLayoutEffect } from 'react'
 import {
   Button,
   FlatList,
-  Image,
+  ImageBackground,
   Platform,
   StyleSheet,
   Text,
@@ -23,8 +28,8 @@ import { RootStackParamList, UsersStackParamList } from 'src/types'
 
 interface Props {
   navigation: CompositeNavigationProp<
-    StackNavigationProp<RootStackParamList, 'UsersStack'>,
-    StackNavigationProp<UsersStackParamList>
+    NativeStackNavigationProp<RootStackParamList, 'UsersStack'>,
+    NativeStackNavigationProp<UsersStackParamList>
   >
 }
 
@@ -46,19 +51,38 @@ const UsersScreen = ({ navigation }: Props) => {
       navigation.dispatch(
         CommonActions.navigate({
           name: 'Chat',
-          params: { roomId: room.id },
+          params: { room },
         })
       )
     }
   }
 
+  const renderAvatar = (item: User) => {
+    const color = getUserAvatarNameColor(item, COLORS)
+    const name = getUserName(item)
+
+    return (
+      <ImageBackground
+        source={{ uri: item.imageUrl }}
+        style={[
+          styles.userImage,
+          { backgroundColor: item.imageUrl ? undefined : color },
+        ]}
+      >
+        {!item.imageUrl ? (
+          <Text style={styles.userInitial}>
+            {name ? name.charAt(0).toUpperCase() : ''}
+          </Text>
+        ) : null}
+      </ImageBackground>
+    )
+  }
+
   const renderItem = ({ item }: { item: User }) => (
     <TouchableOpacity onPress={() => handlePress(item)}>
       <View style={styles.userContainer}>
-        <Image source={{ uri: item.avatarUrl }} style={styles.userImage} />
-        <Text>
-          {item.firstName} {item.lastName}
-        </Text>
+        {renderAvatar(item)}
+        <Text>{getUserName(item)}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -95,10 +119,16 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   userImage: {
+    alignItems: 'center',
     borderRadius: 20,
     height: 40,
+    justifyContent: 'center',
     marginRight: 16,
+    overflow: 'hidden',
     width: 40,
+  },
+  userInitial: {
+    color: 'white',
   },
 })
 
