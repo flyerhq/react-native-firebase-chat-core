@@ -9,10 +9,10 @@ As mentioned in [How it works?](firebase-overview#how-it-works), you will need t
 import { createUserInFirestore } from '@flyerhq/react-native-firebase-chat-core'
 
 await createUserInFirestore({
-  firstName: 'Alex',
+  firstName: 'John',
   id: credential.user.uid, // UID from Firebase Authentication
   imageUrl: 'https://i.pravatar.cc/300',
-  lastName: 'Demchenko',
+  lastName: 'Doe',
 })
 ```
 
@@ -73,7 +73,7 @@ export default UsersScreen
 
 ## Rooms
 
-To render user's rooms you use the `useRooms` hook. `Room` object will have name and image URL taken either from provided ones for the group or set to the other person's image URL and name. See [Security Rules](firebase-rules) for more info about rooms filtering. The returned list is dynamic and will change in real-time.
+To render user's rooms you use the `useRooms` hook. `Room` object will the have name and image URL taken either from provided ones for the group or set to the other person's image URL and name. See [Security Rules](firebase-rules) for more info about rooms filtering. The returned list is dynamic and will change in real-time.
 
 ```ts
 import { useRooms } from '@flyerhq/react-native-firebase-chat-core'
@@ -100,7 +100,7 @@ export default RoomsScreen
 ```ts
 import { useMessages } from '@flyerhq/react-native-firebase-chat-core'
 
-const { messages, sendMessage, updateMessage } = useMessages('roomId')
+const { messages, sendMessage, updateMessage } = useMessages(room)
 ```
 
 If you use Flyer Chat UI you can just pass `messages` to the `messages` prop of the Chat component. See the [example](https://github.com/flyerhq/react-native-firebase-chat-core/blob/main/example/src/screens/ChatScreen/ChatScreen.tsx).
