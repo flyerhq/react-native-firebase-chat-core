@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 
+import { ROOMS_COLLECTION_NAME } from '.'
 import { Room, User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 import { fetchUser, processRoomsQuery } from './utils'
@@ -27,11 +28,11 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
 
     const collection = orderByUpdatedAt
       ? firestore()
-          .collection('rooms')
+          .collection(ROOMS_COLLECTION_NAME)
           .where('userIds', 'array-contains', firebaseUser.uid)
           .orderBy('updatedAt', 'desc')
       : firestore()
-          .collection('rooms')
+          .collection(ROOMS_COLLECTION_NAME)
           .where('userIds', 'array-contains', firebaseUser.uid)
 
     return collection.onSnapshot(async (query) => {
@@ -63,7 +64,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
     const roomUsers = [currentUser].concat(users)
 
     const room = await firestore()
-      .collection('rooms')
+      .collection(ROOMS_COLLECTION_NAME)
       .add({
         createdAt: firestore.FieldValue.serverTimestamp(),
         imageUrl,
@@ -96,7 +97,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
     if (!firebaseUser) return
 
     const query = await firestore()
-      .collection('rooms')
+      .collection(ROOMS_COLLECTION_NAME)
       .where('userIds', 'array-contains', firebaseUser.uid)
       .get()
 
@@ -120,7 +121,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
     const users = [currentUser].concat(otherUser)
 
     const room = await firestore()
-      .collection('rooms')
+      .collection(ROOMS_COLLECTION_NAME)
       .add({
         createdAt: firestore.FieldValue.serverTimestamp(),
         imageUrl: undefined,

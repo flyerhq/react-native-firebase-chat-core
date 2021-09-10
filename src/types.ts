@@ -1,5 +1,14 @@
 import { ImageURISource } from 'react-native'
 
+/** Interface that represents the chat config. Can be used for setting custom names
+ * for rooms and users collections. Call `setConfig` before doing anything else if
+ * you want to change the default collection names. When using custom names don't forget
+ * to update your security rules and indexes. */
+export interface FirebaseChatCoreConfig {
+  roomsCollectionName: string
+  usersCollectionName: string
+}
+
 export namespace MessageType {
   export type Any = Custom | File | Image | Text | Unsupported
   export type PartialAny =

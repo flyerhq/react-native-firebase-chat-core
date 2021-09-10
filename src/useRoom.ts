@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 
+import { ROOMS_COLLECTION_NAME } from '.'
 import { Room } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 import { processRoomDocument } from './utils'
@@ -14,7 +15,7 @@ export const useRoom = (initialRoom: Room) => {
     if (!firebaseUser) return
 
     return firestore()
-      .collection('rooms')
+      .collection(ROOMS_COLLECTION_NAME)
       .doc(initialRoom.id)
       .onSnapshot(async (doc) => {
         const newRoom = await processRoomDocument({ doc, firebaseUser })

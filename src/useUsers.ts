@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore'
 import * as React from 'react'
 
+import { USERS_COLLECTION_NAME } from '.'
 import { User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 
@@ -16,11 +17,11 @@ export const useUsers = () => {
     }
 
     return firestore()
-      .collection('users')
+      .collection(USERS_COLLECTION_NAME)
       .onSnapshot((query) => {
         const newUsers: User[] = []
 
-        query.forEach((doc) => {
+        query?.forEach((doc) => {
           if (firebaseUser.uid === doc.id) return
 
           const data = doc.data()!

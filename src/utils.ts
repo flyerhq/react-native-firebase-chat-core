@@ -3,11 +3,21 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
 
-import { Room, User } from './types'
+import { FirebaseChatCoreConfig, Room, User } from './types'
+
+export let ROOMS_COLLECTION_NAME = 'rooms'
+export let USERS_COLLECTION_NAME = 'users'
+
+/** Sets custom config to change default names for rooms
+ * and users collections. Also see {@link FirebaseChatCoreConfig}. */
+export const setConfig = (config: FirebaseChatCoreConfig) => {
+  ROOMS_COLLECTION_NAME = config.roomsCollectionName
+  USERS_COLLECTION_NAME = config.usersCollectionName
+}
 
 /** Creates {@link User} in Firebase to store name and avatar used on rooms list */
 export const createUserInFirestore = async (user: User) => {
-  await firestore().collection('users').doc(user.id).set({
+  await firestore().collection(USERS_COLLECTION_NAME).doc(user.id).set({
     createdAt: firestore.FieldValue.serverTimestamp(),
     firstName: user.firstName,
     imageUrl: user.imageUrl,
@@ -21,12 +31,15 @@ export const createUserInFirestore = async (user: User) => {
 
 /** Removes {@link User} from `users` collection in Firebase */
 export const deleteUserFromFirestore = async (userId: string) => {
-  await firestore().collection('users').doc(userId).delete()
+  await firestore().collection(USERS_COLLECTION_NAME).doc(userId).delete()
 }
 
 /** Fetches user from Firebase and returns a promise */
 export const fetchUser = async (userId: string, role?: User['role']) => {
-  const doc = await firestore().collection('users').doc(userId).get()
+  const doc = await firestore()
+    .collection(USERS_COLLECTION_NAME)
+    .doc(userId)
+    .get()
 
   const data = doc.data()!
 
