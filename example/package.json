@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/react-native-action-sheet": "^3.11.0",
     "@flyerhq/react-native-android-uri-path": "^2.2.1",
-    "@flyerhq/react-native-chat-ui": "^1.3.3",
+    "@flyerhq/react-native-chat-ui": "^1.4.0",
     "@react-native-firebase/app": "^12.7.5",
     "@react-native-firebase/auth": "^12.7.5",
     "@react-native-firebase/firestore": "^12.7.5",
