@@ -5,6 +5,16 @@ import { Room, User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 import { fetchUser, processRoomsQuery } from './utils'
 
+/** Returns a stream of rooms from Firebase. Only rooms where current
+ * logged in user exist are returned. `orderByUpdatedAt` is used in case
+ * you want to have last modified rooms on top, there are a couple
+ * of things you will need to do though:
+ * 1) Make sure `updatedAt` exists on all rooms
+ * 2) Write a Cloud Function which will update `updatedAt` of the room
+ * when the room changes or new messages come in
+ * 3) Create an Index (Firestore Database -> Indexes tab) where collection ID
+ * is `rooms`, field indexed are `userIds` (type Arrays) and `updatedAt`
+ * (type Descending), query scope is `Collection` */
 export const useRooms = (orderByUpdatedAt?: boolean) => {
   const [rooms, setRooms] = React.useState<Room[]>([])
   const { firebaseUser } = useFirebaseUser()
@@ -31,6 +41,10 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
     })
   }, [firebaseUser, orderByUpdatedAt])
 
+  /** Creates a chat group room with `users`. Creator is automatically
+   * added to the group. `name` is required and will be used as
+   * a group name. Add an optional `imageUrl` that will be a group avatar
+   * and `metadata` for any additional custom data. */
   const createGroupRoom = async ({
     imageUrl,
     metadata,
@@ -74,6 +88,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
     } as Room
   }
 
+  /** Creates a direct chat for 2 people. Add `metadata` for any additional custom data. */
   const createRoom = async (
     otherUser: User,
     metadata?: Record<string, any>

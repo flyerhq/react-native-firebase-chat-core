@@ -4,6 +4,7 @@ import * as React from 'react'
 import { MessageType, Room } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 
+/** Returns a stream of messages from Firebase for a given room */
 export const useMessages = (room: Room) => {
   const [messages, setMessages] = React.useState<MessageType.Any[]>([])
   const { firebaseUser } = useFirebaseUser()
@@ -40,6 +41,7 @@ export const useMessages = (room: Room) => {
       })
   }, [room.id, room.users])
 
+  /** Sends a message to the Firestore. Accepts any partial message. */
   const sendMessage = async (message: MessageType.PartialAny) => {
     if (!firebaseUser) return
 
@@ -53,6 +55,8 @@ export const useMessages = (room: Room) => {
       })
   }
 
+  /** Updates a message in the Firestore. Accepts any message.
+   * Message will probably be taken from the `useMessages` stream. */
   const updateMessage = async (message: MessageType.Any) => {
     if (!firebaseUser || message.author.id !== firebaseUser.uid) return
 

@@ -5,6 +5,7 @@ import firestore, {
 
 import { Room, User } from './types'
 
+/** Creates {@link User} in Firebase to store name and avatar used on rooms list */
 export const createUserInFirestore = async (user: User) => {
   await firestore().collection('users').doc(user.id).set({
     createdAt: firestore.FieldValue.serverTimestamp(),
@@ -18,10 +19,12 @@ export const createUserInFirestore = async (user: User) => {
   })
 }
 
+/** Removes {@link User} from `users` collection in Firebase */
 export const deleteUserFromFirestore = async (userId: string) => {
   await firestore().collection('users').doc(userId).delete()
 }
 
+/** Fetches user from Firebase and returns a promise */
 export const fetchUser = async (userId: string, role?: User['role']) => {
   const doc = await firestore().collection('users').doc(userId).get()
 
@@ -50,6 +53,8 @@ export const fetchUser = async (userId: string, role?: User['role']) => {
   return user
 }
 
+/** Returns an array of {@link Room}s created from Firebase query.
+ * If room has 2 participants, sets correct room name and image. */
 export const processRoomsQuery = async ({
   firebaseUser,
   query,
@@ -64,6 +69,7 @@ export const processRoomsQuery = async ({
   return await Promise.all(promises)
 }
 
+/** Returns a {@link Room} created from Firebase document */
 export const processRoomDocument = async ({
   doc,
   firebaseUser,

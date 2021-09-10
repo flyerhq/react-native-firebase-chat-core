@@ -4,6 +4,7 @@ import * as React from 'react'
 import { User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 
+/** Returns a stream of all users from Firebase */
 export const useUsers = () => {
   const [users, setUsers] = React.useState<User[]>([])
   const { firebaseUser } = useFirebaseUser()
