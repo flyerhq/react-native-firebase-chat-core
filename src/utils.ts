@@ -28,14 +28,22 @@ export const fetchUser = async (userId: string, role?: User['role']) => {
   const data = doc.data()!
 
   const user: User = {
+    // Ignore types here, not provided by the Firebase library
+    // type-coverage:ignore-next-line
     createdAt: data.createdAt?.toMillis() ?? undefined,
+    // type-coverage:ignore-next-line
     firstName: data.firstName ?? undefined,
     id: doc.id,
+    // type-coverage:ignore-next-line
     imageUrl: data.imageUrl ?? undefined,
+    // type-coverage:ignore-next-line
     lastName: data.lastName ?? undefined,
+    // type-coverage:ignore-next-line
     lastSeen: data.lastSeen?.toMillis() ?? undefined,
+    // type-coverage:ignore-next-line
     metadata: data.metadata ?? undefined,
     role,
+    // type-coverage:ignore-next-line
     updatedAt: data.updatedAt?.toMillis() ?? undefined,
   }
 
@@ -60,22 +68,33 @@ export const processRoomDocument = async ({
   doc,
   firebaseUser,
 }: {
-  doc: FirebaseFirestoreTypes.DocumentData
+  doc:
+    | FirebaseFirestoreTypes.DocumentSnapshot<FirebaseFirestoreTypes.DocumentData>
+    | FirebaseFirestoreTypes.QueryDocumentSnapshot<FirebaseFirestoreTypes.DocumentData>
   firebaseUser: FirebaseAuthTypes.User
 }) => {
   const data = doc.data()!
 
+  // Ignore types here, not provided by the Firebase library
+  // type-coverage:ignore-next-line
   const createdAt = data.createdAt?.toMillis() ?? undefined
   const id = doc.id
+  // type-coverage:ignore-next-line
   const updatedAt = data.updatedAt?.toMillis() ?? undefined
 
+  // type-coverage:ignore-next-line
   let imageUrl = data.imageUrl ?? undefined
   let lastMessages
+  // type-coverage:ignore-next-line
   let name = data.name ?? undefined
+  // type-coverage:ignore-next-line
   const metadata = data.metadata ?? undefined
+  // type-coverage:ignore-next-line
   const type = data.type as Room['type']
+  // type-coverage:ignore-next-line
   const userIds = data.userIds as string[]
   const userRoles =
+    // type-coverage:ignore-next-line
     (data.userRoles as Record<string, User['role']>) ?? undefined
 
   const users = await Promise.all(
@@ -91,17 +110,25 @@ export const processRoomDocument = async ({
     }
   }
 
+  // type-coverage:ignore-next-line
   if (data.lastMessages && data.lastMessages instanceof Array) {
+    // type-coverage:ignore-next-line
     lastMessages = data.lastMessages.map((lm: any) => {
+      // type-coverage:ignore-next-line
       const author = users.find((u) => u.id === lm.authorId) ?? {
+        // type-coverage:ignore-next-line
         id: lm.authorId as string,
       }
 
       return {
+        // type-coverage:ignore-next-line
         ...(lm ?? {}),
         author,
+        // type-coverage:ignore-next-line
         createdAt: lm.createdAt?.toMillis() ?? undefined,
+        // type-coverage:ignore-next-line
         id: lm.id ?? '',
+        // type-coverage:ignore-next-line
         updatedAt: lm.updatedAt?.toMillis() ?? undefined,
       }
     })

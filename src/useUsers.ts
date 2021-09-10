@@ -25,13 +25,21 @@ export const useUsers = () => {
           const data = doc.data()!
 
           const user: User = {
+            // Ignore types here, not provided by the Firebase library
+            // type-coverage:ignore-next-line
             createdAt: data.createdAt?.toMillis() ?? undefined,
+            // type-coverage:ignore-next-line
             firstName: data.firstName ?? undefined,
             id: doc.id,
+            // type-coverage:ignore-next-line
             imageUrl: data.imageUrl ?? undefined,
+            // type-coverage:ignore-next-line
             lastName: data.lastName ?? undefined,
+            // type-coverage:ignore-next-line
             lastSeen: data.lastSeen?.toMillis() ?? undefined,
+            // type-coverage:ignore-next-line
             metadata: data.metadata ?? undefined,
+            // type-coverage:ignore-next-line
             updatedAt: data.updatedAt?.toMillis() ?? undefined,
           }
 
