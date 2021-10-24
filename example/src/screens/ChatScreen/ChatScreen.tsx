@@ -58,9 +58,9 @@ const ChatScreen = ({ route }: Props) => {
       await reference.putFile(getPath(response.uri))
       const uri = await reference.getDownloadURL()
       const message: MessageType.PartialFile = {
-        mimeType: response.type,
+        mimeType: response.type ?? undefined,
         name,
-        size: response.size,
+        size: response.size ?? 0,
         type: 'file',
         uri,
       }

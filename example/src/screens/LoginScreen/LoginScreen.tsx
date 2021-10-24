@@ -53,7 +53,7 @@ const LoginScreen = ({ navigation }: Props) => {
     >
       <TextInput
         autoCapitalize='none'
-        autoCompleteType='email'
+        autoComplete='email'
         autoCorrect={false}
         autoFocus
         clearButtonMode='while-editing'
@@ -72,7 +72,7 @@ const LoginScreen = ({ navigation }: Props) => {
       <TextInput
         ref={passwordInput}
         autoCapitalize='none'
-        autoCompleteType='password'
+        autoComplete='password'
         autoCorrect={false}
         clearButtonMode='while-editing'
         editable={!loggingIn}
