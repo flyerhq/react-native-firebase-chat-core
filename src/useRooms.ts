@@ -124,7 +124,6 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
       .collection(ROOMS_COLLECTION_NAME)
       .add({
         createdAt: firestore.FieldValue.serverTimestamp(),
-        metadata:metadata ?? {},
         type: 'direct',
         updatedAt: firestore.FieldValue.serverTimestamp(),
         userIds: users.map((u) => u.id)
