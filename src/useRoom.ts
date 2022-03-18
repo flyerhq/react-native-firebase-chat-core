@@ -8,7 +8,7 @@ import { processRoomDocument } from './utils'
 
 /** Returns a stream of changes in a room from Firebase */
 export const useRoom = (initialRoom: Room) => {
-  const [room, setRoom] = React.useState(initialRoom)
+  const [room, setRoom] = React.useState(initialRoom ?? "")
   const { firebaseUser } = useFirebaseUser()
 
   React.useEffect(() => {
@@ -16,13 +16,13 @@ export const useRoom = (initialRoom: Room) => {
 
     return firestore()
       .collection(ROOMS_COLLECTION_NAME)
-      .doc(initialRoom.id)
+      .doc(initialRoom?.id)
       .onSnapshot(async (doc) => {
         const newRoom = await processRoomDocument({ doc, firebaseUser })
 
         setRoom(newRoom)
       })
-  }, [firebaseUser, initialRoom.id])
+  }, [firebaseUser, initialRoom?.id])
 
   return { room }
 }

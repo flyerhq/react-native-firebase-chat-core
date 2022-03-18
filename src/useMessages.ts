@@ -22,7 +22,7 @@ export const useMessages = (room: Room) => {
           const { authorId, createdAt, updatedAt, ...rest } = doc.data()
 
           // type-coverage:ignore-next-line
-          const author = room.users.find((u) => u.id === authorId) ?? {
+          const author = room?.users?.find((u) => u.id === authorId) ?? {
             id: authorId as string,
           }
 
