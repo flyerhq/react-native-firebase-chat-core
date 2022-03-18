@@ -16,7 +16,7 @@ export const useMessages = (room: Room) => {
       .onSnapshot((query) => {
         const newMessages: MessageType.Any[] = []
 
-        query.forEach((doc) => {
+        query?.forEach((doc) => {
           // Ignore `authorId`, `createdAt` and `updatedAt` types here, not provided by the Firebase library
           // type-coverage:ignore-next-line
           const { authorId, createdAt, updatedAt, ...rest } = doc.data()
