@@ -22,6 +22,7 @@ export const createUserInFirestore = async (user: User) => {
     ...rest,
     createdAt: firestore.FieldValue.serverTimestamp(),
     updatedAt: firestore.FieldValue.serverTimestamp(),
+    lastSeen:firestore.FieldValue.serverTimestamp()
   })
 }
 
