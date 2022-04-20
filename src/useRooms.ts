@@ -5,7 +5,7 @@ import { ROOMS_COLLECTION_NAME } from '.'
 import { Room, User } from './types'
 import { useFirebaseUser } from './useFirebaseUser'
 import { fetchUser, processRoomsQuery } from './utils'
-import { FirebaseAuthTypes } from '@react-native-firebase/auth'
+
 /** Returns a stream of rooms from Firebase. Only rooms where current
  * logged in user exist are returned. `orderByUpdatedAt` is used in case
  * you want to have last modified rooms on top, there are a couple
@@ -92,33 +92,23 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
   /** Creates a direct chat for 2 people. Add `metadata` for any additional custom data. */
   const createRoom = async (
     otherUser: User,
-    metadata?: Record<string, any>,
-    currentFirBaseUser?: FirebaseAuthTypes.User
+    metadata?: Record<string, any>
   ) => {
-    if (!firebaseUser && !currentFirBaseUser) return
+    if (!firebaseUser) return
 
     const query = await firestore()
       .collection(ROOMS_COLLECTION_NAME)
-      .where(
-        'userIds',
-        'array-contains',
-        firebaseUser.uid ?? currentFirBaseUser
-      )
+      .where('userIds', 'array-contains', firebaseUser.uid)
       .get()
 
-    const allRooms = await processRoomsQuery(
-      firebaseUser
-        ? { firebaseUser, query }
-        : { firebaseUser: currentFirBaseUser, query }
-    )
+    const allRooms = await processRoomsQuery({ firebaseUser, query })
 
     const existingRoom = allRooms.find((room) => {
       if (room.type === 'group') return false
 
       const userIds = room.users.map((u) => u.id)
       return (
-        userIds.includes(firebaseUser.uid ?? currentFirBaseUser.uid) &&
-        userIds.includes(otherUser.id)
+        userIds.includes(firebaseUser.uid) && userIds.includes(otherUser.id)
       )
     })
 
@@ -126,9 +116,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
       return existingRoom
     }
 
-    const currentUser = await fetchUser(
-      firebaseUser.uid ?? currentFirBaseUser.uid
-    )
+    const currentUser = await fetchUser(firebaseUser.uid)
 
     const users = [currentUser].concat(otherUser)
 
@@ -138,7 +126,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
         createdAt: firestore.FieldValue.serverTimestamp(),
         type: 'direct',
         updatedAt: firestore.FieldValue.serverTimestamp(),
-        userIds: users.map((u) => u.id),
+        userIds: users.map((u) => u.id)
       })
 
     return {
