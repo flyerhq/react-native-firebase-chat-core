@@ -17,13 +17,16 @@ export const setConfig = (config: FirebaseChatCoreConfig) => {
 
 /** Creates {@link User} in Firebase to store name and avatar used on rooms list */
 export const createUserInFirestore = async (user: User) => {
-  const { id, ...rest } = user;
-  await firestore().collection(USERS_COLLECTION_NAME).doc(id).set({
-    ...rest,
-    createdAt: firestore.FieldValue.serverTimestamp(),
-    updatedAt: firestore.FieldValue.serverTimestamp(),
-    lastSeen:firestore.FieldValue.serverTimestamp()
-  })
+  const { id, ...rest } = user
+  await firestore()
+    .collection(USERS_COLLECTION_NAME)
+    .doc(id)
+    .set({
+      ...rest,
+      createdAt: firestore.FieldValue.serverTimestamp(),
+      updatedAt: firestore.FieldValue.serverTimestamp(),
+      lastSeen: firestore.FieldValue.serverTimestamp(),
+    })
 }
 
 /** Removes {@link User} from `users` collection in Firebase */
@@ -43,21 +46,21 @@ export const fetchUser = async (userId: string, role?: User['role']) => {
   const user: User = {
     // Ignore types here, not provided by the Firebase library
     // type-coverage:ignore-next-line
-    createdAt: data.createdAt?.toMillis() ?? undefined,
+    createdAt: data?.createdAt?.toMillis() ?? undefined,
     // type-coverage:ignore-next-line
-    firstName: data.firstName ?? undefined,
-    id: doc.id,
+    firstName: data?.firstName ?? undefined,
+    id: doc?.id,
     // type-coverage:ignore-next-line
-    imageUrl: data.imageUrl ?? undefined,
+    imageUrl: data?.imageUrl ?? undefined,
     // type-coverage:ignore-next-line
-    lastName: data.lastName ?? undefined,
+    lastName: data?.lastName ?? undefined,
     // type-coverage:ignore-next-line
-    lastSeen: data.lastSeen?.toMillis() ?? undefined,
+    lastSeen: data?.lastSeen?.toMillis() ?? undefined,
     // type-coverage:ignore-next-line
-    metadata: data.metadata ?? undefined,
+    metadata: data?.metadata ?? undefined,
     role,
     // type-coverage:ignore-next-line
-    updatedAt: data.updatedAt?.toMillis() ?? undefined,
+    updatedAt: data?.updatedAt?.toMillis() ?? undefined,
   }
 
   return user
