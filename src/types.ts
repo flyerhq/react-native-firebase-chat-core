@@ -26,6 +26,7 @@ export namespace MessageType {
     status?: 'delivered' | 'error' | 'seen' | 'sending' | 'sent'
     type: 'custom' | 'file' | 'image' | 'text' | 'unsupported'
     updatedAt?: number
+    text?: string
   }
 
   export interface PartialCustom extends Base {
