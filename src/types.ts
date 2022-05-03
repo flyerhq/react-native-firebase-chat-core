@@ -103,6 +103,7 @@ export interface Room {
   type: 'channel' | 'direct' | 'group' | 'unsupported'
   updatedAt?: number
   users: User[]
+  unSeenMessages?: Record<string, any>
 }
 
 export interface User {
