@@ -74,6 +74,10 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
         type: 'group',
         updatedAt: firestore.FieldValue.serverTimestamp(),
         userIds: roomUsers.map((u) => u.id),
+        unseen: roomUsers.reduce(
+          (prev, curr) => ({ ...prev, [curr.id]: 0 }),
+          {}
+        ),
         userRoles: roomUsers.reduce(
           (prev, curr) => ({ ...prev, [curr.id]: curr.role }),
           {}
