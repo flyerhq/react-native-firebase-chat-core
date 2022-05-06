@@ -79,7 +79,7 @@ export const useRooms = (orderByUpdatedAt?: boolean) => {
           {}
         ),
         userRoles: roomUsers.reduce(
-          (prev, curr) => ({ ...prev, [curr.id]: curr.role }),
+          (prev, curr) => ({ ...prev, [curr.id]: curr.role ?? 'user' }),
           {}
         ),
       })
